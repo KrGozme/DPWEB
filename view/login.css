@@ -6,7 +6,7 @@
 
 body {
   font-family: Arial, sans-serif;
-  background: linear-gradient(to right, #e97100, #ff1e00);
+  background: linear-gradient(to right, #006eff, #24c1ff);
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -15,9 +15,10 @@ body {
 
 .login-container {
   background-color: white;
-  padding: 30px;
-  border-radius: 10px;
-  width: 300px;
+  padding: 35px;
+  border-radius: 20px;
+  width: 400px;
+  height: 325px;
   box-shadow: 0 0 20px rgba(0,0,0,0.1);
 }
 
@@ -49,7 +50,7 @@ input[type="password"] {
 button {
   width: 100%;
   padding: 10px;
-  background-color: #667eea;
+  background-color: #5372ff;
   color: white;
   border: none;
   border-radius: 5px;
