@@ -30,10 +30,10 @@
                         <a class="nav-link" href="#">users</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">products</a>
+                        <a class="nav-link" href="<?php echo BASE_URL; ?>products">products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">categories</a>
+                        <a class="nav-link" target="_blank" href="<?php echo BASE_URL; ?>categories">categories</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">clients</a>

@@ -9,7 +9,7 @@ function validar_form_categoria() {
             text: "Por favor, completa todos los campos.",
         });
         return;
-    }
+    }     
 
     registrarCategoria();
 }
