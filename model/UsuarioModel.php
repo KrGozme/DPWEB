@@ -19,9 +19,15 @@ class UsuarioModel
         }
         return $sql;
     }
-    public function ExistePersona($nro_identidad){
-        $consulta="SELECT * FROM persona WHERE nro_identidad='$nro_identidad'";
-        $sql =$this->conexion->query($consulta);
+public function existePersona($nro_identidad){
+        $consulta="SELECT *FROM persona Where nro_identidad='$nro_identidad'";
+        $sql = $this->conexion->query($consulta);
         return $sql->num_rows;
     }
+    public function buscarPersonaPorNroIdentidad($nro_identidad)  {
+        $consulta = "SELECT id, razon_social, password FROM persona WHERE nro_identidad = '$nro_identidad' limit 1";
+        $sql = $this->conexion->query($consulta);
+        return $sql->fetch_object();
+    }
+
 }
