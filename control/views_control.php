@@ -18,7 +18,7 @@ class viewsControl extends viewModel  // Define la clase controlador de vistas q
                 $ruta = explode("/", $_GET["views"]);  // Divide el valor del parámetro en un array usando "/" como separador
                 $response = viewModel::get_view($ruta[0]); // Llama al método get_view de la clase viewModel para obtener la vista correspondiente
             } else {
-                $response = "index";  // Si no se ha enviado el parámetro "views", se carga la vista por defecto "index"
+                $response = "index.php";  // Si no se ha enviado el parámetro "views", se carga la vista por defecto "index"
             }
         }else {
             $response = "login";  // Si el usuario no ha iniciado sesión, se redirige a la vista de login
