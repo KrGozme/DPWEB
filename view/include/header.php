@@ -27,7 +27,7 @@
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo BASE_URL; ?>new-user">users</a>
+                        <a class="nav-link" href="<?php echo BASE_URL; ?>users">users</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo BASE_URL; ?>">products</a>

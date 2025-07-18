@@ -68,3 +68,9 @@ if ($tipo == "iniciar_sesion") {  // Si el tipo es "iniciar_sesion", se procede 
     }
     echo json_encode($respuesta);  // Devuelve la respuesta en formato JSON
 }
+
+
+if ($tipo == "ver_usuarios"){
+    $usuarios = $objPersona->verUsuarios();
+    echo json_encode($usuarios);  
+}

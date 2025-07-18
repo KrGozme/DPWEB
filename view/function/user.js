@@ -23,7 +23,6 @@ function validar_form() {  //funcion para validar los campos del formulario
         });
         return;
     }
-
     registrarUsuario();  //llamamos a la funcion registrarUsuario para enviar los datos al controlador
 }
     
@@ -95,3 +94,26 @@ async function iniciar_sesion() {  // Función asíncrona para iniciar sesión
         console.log(error);  // Muestra el error en la consola
     } 
 } 
+
+
+
+
+
+
+
+async function view_users() {
+    try {
+        let respuesta = await fetch(base_url + 'control/UsuarioController.php?tipo=ver_usuarios', {
+            method: 'GET',
+            mode: 'cors',
+            cache: 'no-cache'
+        });
+        let json = await respuesta.json(); 
+        let content_users = document.getElementById('content_users');  
+    } catch (error) {  
+        console.log("Error al obtener usuarios: " + error); 
+    }
+}
+if (document.getElementById('content_users')) {
+    view_users();
+}

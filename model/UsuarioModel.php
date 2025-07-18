@@ -11,7 +11,6 @@ class UsuarioModel  // Clase que maneja las operaciones relacionadas con los usu
         $this->conexion = new Conexion();  // Crea una nueva instancia de la clase Conexion
         $this->conexion = $this->conexion->connect();  //llama al método connect() para establecer la conexión a la base de datos
     }
-
     // Método para registrar un nuevo usuario en la base de datos 
     public function registrar($nro_identidad, $razon_social, $telefono, $correo, $departamento, $provincia, $distrito, $cod_postal, $direccion, $rol, $password) { 
         //crea la consulta SQL para insertar un nuevo usuario en la tabla persona
@@ -35,6 +34,15 @@ public function existePersona($nro_identidad){  // Método para verificar si una
         $consulta = "SELECT id, razon_social, password FROM persona WHERE nro_identidad = '$nro_identidad' limit 1";
         $sql = $this->conexion->query($consulta);  // Ejecuta la consulta SQL
         return $sql->fetch_object();  // Devuelve el resultado de la consulta como un objeto
+    }
+    public function verUsuarios() { 
+        $arr_usuarios = array();  
+        $consulta = "SELECT * FROM persona";  
+        $sql = $this->conexion->query($consulta);  
+        while ($obejeto = $sql->fetch_object()) {  
+            array_push($arr_usuarios, $obejeto); 
+        }
+        return $arr_usuarios;  
     }
 
 }
