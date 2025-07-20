@@ -99,8 +99,6 @@ async function iniciar_sesion() {  // Función asíncrona para iniciar sesión
 
 
 
-
-
 async function view_users() {
     try {
         let respuesta = await fetch(base_url + 'control/UsuarioController.php?tipo=ver_usuarios', {
@@ -108,12 +106,30 @@ async function view_users() {
             mode: 'cors',
             cache: 'no-cache'
         });
+
         let json = await respuesta.json(); 
-        let content_users = document.getElementById('content_users');  
-    } catch (error) {  
+        let content_users = document.getElementById('content_users');
+        content_users.innerHTML = ''; // limpiamos antes de insertar
+
+        json.forEach((user, index) => {
+            let fila = document.createElement('tr');
+            fila.innerHTML = `
+                <td>${index + 1}</td>
+                <td>${user.nro_identidad}</td>
+                <td>${user.razon_social}</td>
+                <td>${user.correo}</td>
+                <td>${user.rol}</td>
+                <td>${user.estado}</td>
+            `;
+            content_users.appendChild(fila);
+        });
+
+    } catch (error) {
         console.log("Error al obtener usuarios: " + error); 
     }
 }
+
 if (document.getElementById('content_users')) {
     view_users();
 }
+

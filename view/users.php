@@ -7,7 +7,6 @@
                 <th>DNI</th>
                 <th>Nombres y Apellidos</th>
                 <th>correo</th>
-                <th>rol</th>
                 <th>Rol</th>
                 <th>Estado</th>
             </tr>
