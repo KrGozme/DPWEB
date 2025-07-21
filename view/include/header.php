@@ -30,6 +30,9 @@
                         <a class="nav-link" href="<?php echo BASE_URL; ?>users">users</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="<?php echo BASE_URL; ?>new-user">new users</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="<?php echo BASE_URL; ?>">products</a>
                     </li>
                     <li class="nav-item">
