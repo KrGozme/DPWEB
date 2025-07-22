@@ -120,6 +120,9 @@ async function view_users() {
                 <td>${user.correo}</td>
                 <td>${user.rol}</td>
                 <td>${user.estado}</td>
+                <td>
+                   <a href="`+base_url+`edit_user`+user.id+`">editar</a>
+                </td>
             `;
             content_users.appendChild(fila);
         });
