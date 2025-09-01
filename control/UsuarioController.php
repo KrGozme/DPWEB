@@ -57,20 +57,34 @@ if ($tipo == "iniciar_sesion") {  // Si el tipo es "iniciar_sesion", se procede 
         } else {
             $persona = $objPersona->buscarPersonaPorNroIdentidad($nro_identidad);   // Llama al método buscarPersonaPorNroIdentidad del modelo para obtener los datos del usuario
             if (password_verify($password, $persona->password)) {  // Verifica si la contraseña ingresada coincide con la almacenada en la base de datos
-                session_start();  // Inicia una nueva sesión o reanuda la sesión actual
-                $_SESSION['ventas_id'] = $persona->id;  // Almacena el ID del usuario en la sesión
-                $_SESSION['ventas_usuario'] = $persona->razon_social;  // Almacena el nombre del usuario en la sesión
-                $respuesta = array('status' => true, 'msg' => 'OK');  // Si la contraseña es correcta, se devuelve un mensaje de éxito
+                session_start();  
+                $_SESSION['ventas_id'] = $persona->id;  
+                $_SESSION['ventas_usuario'] = $persona->razon_social;  
+                $respuesta = array('status' => true, 'msg' => 'OK');  
             }else {
-                $respuesta = array('status' => false, 'msg' => 'Error, contraseña incorrecta');  // Si la contraseña es incorrecta, se devuelve un mensaje de error
+                $respuesta = array('status' => false, 'msg' => 'Error, contraseña incorrecta');  
             }
         }
     }
-    echo json_encode($respuesta);  // Devuelve la respuesta en formato JSON
+    echo json_encode($respuesta);  
 }
 
 
 if ($tipo == "ver_usuarios"){
     $usuarios = $objPersona->verUsuarios();
     echo json_encode($usuarios);  
+}
+
+if ($tipo == "ver") {
+    //print_r($_POST);
+    $respuesta = array('status' => false, 'msg' => 'Error');
+    $id_persona = $_POST['id_persona'];
+    $usuario = $objPersona->ver($id_persona);
+    if ($usuario) {
+     $respuesta ['status'] = true;
+     $respuesta['data'] = $usuario;
+  }else {
+    $respuesta['msg'] = 'error, usuario no existe';
+  }
+  echo json_encode($respuesta);
 }

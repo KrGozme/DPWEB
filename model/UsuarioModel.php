@@ -1,11 +1,11 @@
 <?php
 
-require_once("../library/conexion.php");  // Importa la clase de conexión a la base de datos
+require_once("../library/conexion.php"); 
 
 
-class UsuarioModel  // Clase que maneja las operaciones relacionadas con los usuarios
+class UsuarioModel  
 {
-    private $conexion;  // Variable para almacenar la conexión a la base de datos
+    private $conexion;  
     function __construct()  // Constructor de la clase que inicializa la conexión a la base de datos
     {
         $this->conexion = new Conexion();  // Crea una nueva instancia de la clase Conexion
@@ -29,11 +29,11 @@ public function existePersona($nro_identidad){  // Método para verificar si una
         $sql = $this->conexion->query($consulta);  // Ejecuta la consulta SQL
         return $sql->num_rows;  // Devuelve el número de filas que coinciden con la consulta (0 si no existe, mayor a 0 si ya existe)
     }
-    public function buscarPersonaPorNroIdentidad($nro_identidad)  {  // Método para buscar una persona en la base de datos por su número de identidad
-        // Crea una consulta SQL para seleccionar el ID, razón social y contraseña de la persona
+    public function buscarPersonaPorNroIdentidad($nro_identidad)  {  
+        
         $consulta = "SELECT id, razon_social, password FROM persona WHERE nro_identidad = '$nro_identidad' limit 1";
-        $sql = $this->conexion->query($consulta);  // Ejecuta la consulta SQL
-        return $sql->fetch_object();  // Devuelve el resultado de la consulta como un objeto
+        $sql = $this->conexion->query($consulta);  
+        return $sql->fetch_object();  
     }
     public function verUsuarios() { 
         $arr_usuarios = array();  
@@ -43,6 +43,11 @@ public function existePersona($nro_identidad){  // Método para verificar si una
             array_push($arr_usuarios, $obejeto); 
         }
         return $arr_usuarios;  
+    }
+    public function ver($id) {
+        $consulta = "SELECT * FROM persona WHERE id = '$id'";
+        $sql = $this->conexion->query($consulta);  
+        return $sql->fetch_object();
     }
 
 }

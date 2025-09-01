@@ -1,21 +1,21 @@
 <?php
 
-class viewModel  // Clase que gestiona qué vista se debe cargar según la petición
+class viewModel  
 {
-    protected static function get_view($view)  // Método protegido y estático que retorna la vista según el nombre recibido
+    protected static function get_view($view)  
     {
-        $white_list = ["home", "products", "users", "new-user", "categories"];  // Lista blanca: de vistas permitidas
-        if (in_array($view, $white_list)) {  // Verifica si la vista está en la lista blanca
-            if (is_file("./view/" . $view . ".php")) {  // Verifica si el archivo solicitado existe en la carpeta /view
-                $content = "./view/" . $view . ".php";  // Si existe, guarda la ruta del archivo en la variable $content
+        $white_list = ["home", "products", "users", "new-user", "categories","edit-user"]; 
+        if (in_array($view, $white_list)) {  
+            if (is_file("./view/" . $view . ".php")) {  
+                $content = "./view/" . $view . ".php";  
             } else {
-                $content = "404";  // Si el archivo no existe, retorna una página 404 (error)
+                $content = "404";  
             }
-        } elseif ($view == "login") { // Si la vista solicitada es "login", se permite cargar directamente
+        } elseif ($view == "login") { 
             $content = "login";
         } else {
-            $content = "404";  // Si no está en la lista blanca ni es "login", también retorna "404"
+            $content = "404"; 
         }
-        return $content;  // Devuelve el contenido de la vista o "404"
+        return $content;  
     }
 }
