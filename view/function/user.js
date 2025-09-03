@@ -1,6 +1,5 @@
-function validar_form() {  //funcion para validar los campos del formulario
-    //capturar campos de formulario (HTML)
-    let nro_documento = document.getElementById("nro_identidad").value;  // Obtiene el valor escrito en el input con id="nro_identidad" y lo guarda en la variable nro_documento
+function validar_form(tipo) { 
+    let nro_documento = document.getElementById("nro_identidad").value;  
     let razon_social = document.getElementById("razon_social").value;
     let telefono = document.getElementById("telefono").value;
     let correo = document.getElementById("correo").value;
@@ -23,7 +22,12 @@ function validar_form() {  //funcion para validar los campos del formulario
         });
         return;
     }
-    registrarUsuario();  //llamamos a la funcion registrarUsuario para enviar los datos al controlador
+    if (tipo == "nuevo") {
+        registrarUsuario();  
+    }
+    if (tipo == "actualizar") {
+        actualizarUsuario();
+    }
 }
     
 if (document.querySelector('#frm_user')) {  // Verifica si existe un formulario con el id 'frm_user' en el documento
@@ -31,7 +35,7 @@ if (document.querySelector('#frm_user')) {  // Verifica si existe un formulario 
     let frm_user = document.querySelector('#frm_user');  //Guarda ese formulario en una variable llamada frm_user
     frm_user.onsubmit = function (e) {  // Asigna una función que se ejecutará cuando se envíe el formulario
         e.preventDefault()  // Evita que el formulario se envíe de la manera tradicional, lo que permite manejar el envío con JavaScript
-        validar_form();  // Llama a la función validar_form para validar los campos del formulario
+        validar_form("nuevo");  // Llama a la función validar_form para validar los campos del formulario
     }
 }
 
@@ -168,3 +172,16 @@ async function edit_user() {
         console.log("oops, ocurrió un error" + error);
     }
 } 
+
+if (document.querySelector('#frm_edit_user')) {  
+    // valida que se envie el formulario 
+    let frm_user = document.querySelector('#frm_edit_user');  
+    frm_user.onsubmit = function (e) {  
+        e.preventDefault()  
+        validar_form("actualizar");  
+    }
+}
+
+async function actualizarUsuario() {
+    alert("actualizar");
+}
