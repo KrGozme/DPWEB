@@ -232,3 +232,61 @@ async function delete_user(id) {
         }
     }
 }
+
+
+
+
+
+async function view_categories() {
+    try {
+        let respuesta = await fetch(base_url + 'control/CategoriesController.php?tipo=ver_categorias', {
+            method: 'GET',
+            mode: 'cors',
+            cache: 'no-cache'
+        });
+
+        let json = await respuesta.json();
+        let content = document.getElementById('content_categories');
+        content.innerHTML = '';
+
+        json.forEach((cat, index) => {
+            let fila = document.createElement('tr');
+            fila.innerHTML = `
+                <td>${index + 1}</td>
+                <td>${cat.nombre}</td>
+                <td>${cat.detalle}</td>
+                <td>
+                    <a class="btn btn-primary" href="`+base_url+`edit-category/`+cat.id+`">Editar</a>
+                    <button class="btn btn-danger" onclick="delete_category(${cat.id})">Eliminar</button>
+                </td>
+            `;
+            content.appendChild(fila);
+        });
+
+    } catch (error) {
+        console.log("Error al obtener categorías: " + error);
+    }
+}
+
+async function delete_category(id) {
+    if (confirm("¿Seguro que deseas eliminar esta categoría?")) {
+        try {
+            let respuesta = await fetch(base_url + 'control/CategoriesController.php?tipo=eliminar', {
+                method: 'POST',
+                body: new URLSearchParams({ id: id })
+            });
+
+            let result = await respuesta.json();
+            alert(result.msg);
+            view_categories();
+
+        } catch (error) {
+            console.log("Error al eliminar categoría: " + error);
+        }
+    }
+}
+
+// Ejecutar al cargar
+if (document.getElementById('content_categories')) {
+    view_categories();
+}

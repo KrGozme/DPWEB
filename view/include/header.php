@@ -33,7 +33,7 @@
                         <a class="nav-link" href="<?php echo BASE_URL; ?>">products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo BASE_URL; ?>categories">categories</a>
+                        <a class="nav-link" href="<?php echo BASE_URL; ?>new-categories">categories</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">clients</a>
