@@ -125,7 +125,8 @@ async function view_users() {
                 <td>${user.rol}</td>
                 <td>${user.estado}</td>
                 <td>
-                   <a href="`+base_url+`edit-user/`+user.id+`">editar</a>
+                   <a class="btn btn-primary" href="`+base_url+`edit-user/`+user.id+`">editar</a>
+                   <button class="btn btn-danger" onclick="delete_user(${user.id})">Eliminar</button>
                 </td>
             `;
             content_users.appendChild(fila);
@@ -182,6 +183,52 @@ if (document.querySelector('#frm_edit_user')) {
     }
 }
 
+//actualizar usuario
 async function actualizarUsuario() {
-    alert("actualizar");
+    const datos = new FormData(frm_edit_user);
+    let respuesta = await fetch(base_url + 'control/UsuarioController.php?tipo=actualizar', {
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        body: datos
+    });
+    json = await respuesta.json();
+    if (!json.status) {
+        alert("Ooooops, ocurrió un error al actualizar, intentalo nuevamente");
+        console.log(json.msg);
+        return;
+    }else {
+        alert(json.msg);
+    }
+}
+
+
+// eliminar usuario
+async function delete_user(id) {
+    if (!confirm("¿Seguro que deseas eliminar este usuario?")) {
+        return;
+    }
+
+    const datos = new FormData();
+    datos.append("id_persona", id);
+
+    let respuesta = await fetch(base_url + 'control/UsuarioController.php?tipo=eliminar', {
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        body: datos
+    });
+
+    let json = await respuesta.json();
+
+    if (!json.status) {
+        alert("Ooooops, ocurrió un error al eliminar");
+        console.log(json.msg);
+        return;
+    } else {
+        alert(json.msg);
+        if (typeof view_users === "function") {
+            view_users(); 
+        }
+    }
 }

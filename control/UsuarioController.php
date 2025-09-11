@@ -88,3 +88,68 @@ if ($tipo == "ver") {
   }
   echo json_encode($respuesta);
 }
+
+
+//actualizar usuario
+if ($tipo == "actualizar") {
+   // print_r($_POST);
+    $id_persona = $_POST['id_persona'];
+    $nro_identidad = $_POST['nro_identidad'];
+    $razon_social = $_POST['razon_social'];
+    $telefono = $_POST['telefono'];
+    $correo = $_POST['correo'];
+    $departamento = $_POST['departamento'];
+    $provincia = $_POST['provincia'];
+    $distrito = $_POST['distrito'];
+    $cod_postal = $_POST['cod_postal'];
+    $direccion = $_POST['direccion'];
+    $rol = $_POST['rol'];
+    if ($id_persona == "" || $nro_identidad == "" || $razon_social == "" || $telefono == "" || $correo == "" || $departamento == "" || $provincia == "" || $distrito == "" || $cod_postal == "" || $direccion == "" || $rol == "") {
+        $arrResponse = array('status' => false, 'msg' => 'Error, campos vacios');
+    }else {
+        $existeID = $objPersona->ver($id_persona);
+        if (!$existeID) {
+            // debolver mensaje
+            $arrResponse = array('status' => false, 'msg' => 'Error: usuario no existe en Base de Datos');
+            echo json_encode($arrResponse);
+            // cerrar  funcion
+            exit;
+        }else {
+            // actualizar
+            $actualizar = $objPersona->actualizar($id_persona, $nro_identidad, $razon_social, $telefono, $correo, $departamento, $provincia, $distrito, $cod_postal, $direccion, $rol);
+            if ($actualizar) {
+                $arrResponse = array('status' => true, 'msg' => 'Actualizado correctamente');
+            }else {
+                $arrResponse = array('status' => false, 'msg' => $actualizar);
+            }
+            echo json_encode($arrResponse);
+            exit;
+        }
+    }
+}
+
+
+// eliminar usuario
+if ($tipo == "eliminar") {
+    $id_persona = $_POST['id_persona'];
+
+    if ($id_persona == "" || $id_persona <= 0) {
+        $arrResponse = array('status' => false, 'msg' => 'Error: ID inválido');
+    } else {
+        $existeID = $objPersona->ver($id_persona);
+        if (!$existeID) {
+            $arrResponse = array('status' => false, 'msg' => 'Error: usuario no existe en Base de Datos');
+            echo json_encode($arrResponse);
+            exit;
+        } else {
+            $eliminar = $objPersona->eliminar($id_persona);
+            if ($eliminar) {
+                $arrResponse = array('status' => true, 'msg' => 'Usuario eliminado correctamente');
+            } else {
+                $arrResponse = array('status' => false, 'msg' => 'No se pudo eliminar');
+            }
+            echo json_encode($arrResponse);
+            exit;
+        }
+    }
+}
