@@ -24,10 +24,28 @@ class CategoriesModel  // Clase que maneja las operaciones relacionadas con las 
         }
     }
 
-    public function existeCategoria($nombre)  // Método para verificar si una categoría ya existe en la base de datos por su nombre
+    public function existeCategoria($nombre) 
     {
-        $consulta = "SELECT * FROM categoria WHERE nombre = '$nombre'";  // Crea una consulta SQL para contar cuántas veces aparece el nombre de la categoría en la tabla categoria
-        $sql = $this->conexion->query($consulta);  // Ejecuta la consulta SQL
-        return $sql->num_rows; // Devuelve el número de filas que coinciden con la consulta (0 si no existe, mayor a 0 si ya existe)
+        $consulta = "SELECT * FROM categoria WHERE nombre = '$nombre'";  
+        $sql = $this->conexion->query($consulta); 
+        return $sql->num_rows; 
     }
+
+
+    
+        // Obtener todas las categorías
+    public function getCategories() {
+        $consulta = "SELECT * FROM categoria";
+        $sql = $this->conexion->query($consulta);
+        $data = [];
+        while ($row = $sql->fetch_assoc()) {
+            $data[] = $row;
+        }
+        return $data;
+    }
+    
+    
+    
 }
+
+

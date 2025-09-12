@@ -44,3 +44,45 @@ async function registrarCategoria() {
         console.log("Error al registrar categoría: " + error);
     }
 }
+
+
+
+
+
+
+
+
+// Obtener todas las categorías
+document.addEventListener("DOMContentLoaded", function() {
+    cargarCategorias();
+});
+
+async function cargarCategorias() {
+    try {
+        const response = await fetch(base_url + 'control/CategoriesControler.php?tipo=listar');
+        const data = await response.json();
+        const tbody = document.getElementById("content_categories");
+        let html = "";
+
+        data.forEach((category, index) => {
+            html += `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${category.nombre}</td>
+                    <td>${category.detalle}</td>
+                    <td>
+                        <a class="btn btn-primary" href="`+base_url+`edit-categories/`+category.id+`">editar</a>
+                        <button class="btn btn-danger" onclick="deleteCategory(${category.id})">Eliminar</button>
+                    </td>
+                </tr>
+            `;
+        });
+
+        tbody.innerHTML = html;
+    } catch (error) {
+        console.error("Error al cargar categorías:", error);
+    }
+}
+
+
+

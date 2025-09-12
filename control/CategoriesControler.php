@@ -27,3 +27,17 @@ if ($tipo == "registrar") {
 
     echo json_encode($arrResponse);
 }
+
+
+
+
+
+
+// Obtener todas las categorías
+if ($tipo == "listar") {
+    $data = $objCategoria->getCategories();
+    echo json_encode($data, JSON_UNESCAPED_UNICODE);
+}
+
+
+

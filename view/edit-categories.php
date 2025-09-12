@@ -1,7 +1,7 @@
 <!-- Cuerpo de la pagina-->
     <div class="container mt-4">
         <div class="card">
-            <h5 class="card-header">Registrar Nueva Categoría</h5>
+            <h5 class="card-header">Actualizar Categoría</h5>
             <form id="frm_category" action="" method="">
                 <div class="card-body">
                     <div class="mb-3 row">
@@ -16,8 +16,7 @@
                             <textarea class="form-control" id="detalle" name="detalle" placeholder="Detalle de la categoría" required></textarea>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-success">Registrar</button>
-                    <button type="reset" class="btn btn-info">Limpiar</button>
+                    <button type="submit" class="btn btn-success">Actualizar</button>
                     <a href="<?php echo BASE_URL; ?>categories" class="btn btn-danger">Cancelar</a>
                 </div>
             </form>
