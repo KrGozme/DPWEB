@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="p-2 pt-1 pb-1" style="justify-content: space-between; display: flex; background-color: rgba(87, 123, 255, 1); border:solid 5px #000;">
+    <div class="p-2 pt-1 pb-1" style="justify-content: space-between; display: flex; background-color: rgba(253, 157, 101, 1); border:solid 5px #000;">
         <h1 style="font-weight:900; font-family: Arial;">Lista de Productos</h1>
         <button style="font-weight:700" type="button" class="btn btn-success">
             <a class="nav-link" href="<?php echo BASE_URL; ?>new-products">Nuevo Producto</a>

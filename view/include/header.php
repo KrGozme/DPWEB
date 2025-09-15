@@ -14,10 +14,10 @@
 
 </head>
 
-<body style="background-color: #95daffff;">
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+<body style="background-color: #ffdcc0ff;">
+    <nav class="navbar navbar-expand-lg" style="background-color: #40a7fcff; font-weight: bold; font-size: 1.3rem">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Logo</a>
+            <a class="navbar-brand" href="#" style="font-size: 1.7rem;">⭐</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
