@@ -86,3 +86,137 @@ async function cargarCategorias() {
 
 
 
+
+
+
+// editar categoría
+async function edit_category() {
+    // Obtener ID desde input hidden
+    const id = document.getElementById("id_categoria").value;
+
+    // Traer datos de la categoría
+    try {
+        const response = await fetch(base_url + 'control/CategoriesControler.php?tipo=ver&id=' + id);
+        const data = await response.json();
+
+        // Rellenar campos con la info de la BD
+        document.getElementById("nombre").value = data.nombre;
+        document.getElementById("detalle").value = data.detalle;
+
+        // Manejar el submit
+        document.getElementById("frm_category").addEventListener("submit", async function (e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            formData.append("id", id);
+
+            const resp = await fetch(base_url + 'control/CategoriesControler.php?tipo=actualizar', {
+                method: "POST",
+                body: formData
+            });
+            const result = await resp.json();
+
+            Swal.fire({
+                icon: result.status ? "success" : "error",
+                title: result.msg,
+                showConfirmButton: false,
+                timer: 3000
+            }).then(() => {
+                if (result.status) {
+                    window.location.href = base_url + "categories";
+                }
+            });
+        });
+    } catch (error) {
+        console.error("Error cargando categoría:", error);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+// Eliminar categoría
+async function deleteCategory(id) {
+    Swal.fire({
+        title: "¿Estás seguro?",
+        text: "Esta acción no se puede deshacer",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Sí, eliminar",
+        cancelButtonText: "Cancelar"
+    }).then(async (result) => {
+        if (result.isConfirmed) {
+            try {
+                let datos = new FormData();
+                datos.append("id", id);
+
+                let respuesta = await fetch(base_url + 'control/CategoriesControler.php?tipo=eliminar', {
+                    method: 'POST',
+                    body: datos
+                });
+                let json = await respuesta.json();
+
+                if (json.status) {
+                    Swal.fire("Eliminado", json.msg, "success");
+                    cargarCategorias(); // recarga la tabla
+                } else {
+                    Swal.fire("Error", json.msg, "error");
+                }
+            } catch (error) {
+                console.error("Error al eliminar categoría:", error);
+            }
+        }
+    });
+}
+
+// Cargar datos en el formulario de edición
+async function cargarCategoriaEditar(id) {
+    try {
+        let respuesta = await fetch(base_url + 'control/CategoriesControler.php?tipo=ver&id=' + id);
+        let data = await respuesta.json();
+
+        document.getElementById("nombre").value = data.nombre;
+        document.getElementById("detalle").value = data.detalle;
+        document.getElementById("frm_category").setAttribute("data-id", id);
+    } catch (error) {
+        console.error("Error al cargar categoría:", error);
+    }
+}
+
+// Enviar actualización
+if (document.querySelector('#frm_category')) {
+    let frm_category = document.querySelector('#frm_category');
+    frm_category.onsubmit = async function (e) {
+        e.preventDefault();
+
+        let id = frm_category.getAttribute("data-id");
+        if (id) {
+            // actualizar
+            let datos = new FormData(frm_category);
+            datos.append("id", id);
+
+            let respuesta = await fetch(base_url + 'control/CategoriesControler.php?tipo=actualizar', {
+                method: 'POST',
+                body: datos
+            });
+            let json = await respuesta.json();
+
+            if (json.status) {
+                Swal.fire("Actualizado", json.msg, "success");
+            } else {
+                Swal.fire("Error", json.msg, "error");
+            }
+        } else {
+            validar_form_categoria(); // registrar normal
+        }
+    }
+}

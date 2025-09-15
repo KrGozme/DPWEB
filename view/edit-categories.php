@@ -2,7 +2,14 @@
     <div class="container mt-4">
         <div class="card">
             <h5 class="card-header">Actualizar Categoría</h5>
+            <?php
+            if (isset($_GET["views"])) {
+                $ruta = explode("/", $_GET["views"]);
+                //echo $ruta[1];
+            } 
+            ?>
             <form id="frm_category" action="" method="">
+                <input type="hidden" id="id_categoria" name="id_categoria" value="<?php echo $ruta[1]; ?>">
                 <div class="card-body">
                     <div class="mb-3 row">
                         <label for="nombre" class="col-sm-4 col-form-label">Nombre de Categoría:</label>
@@ -24,3 +31,6 @@
     </div>
 <!-- Fin de cuerpo de la pagina-->
 <script src="<?php echo BASE_URL; ?>view/function/Categories.js"></script>
+<script>
+    edit_category();
+</script>

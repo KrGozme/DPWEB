@@ -4,7 +4,7 @@ class viewModel
 {
     protected static function get_view($view)  
     {
-        $white_list = ["home", "products", "users", "new-user","edit-user", "categories", "new-categories", "edit-categories"]; 
+        $white_list = ["home", "products","new-products","edit-products", "users", "new-user","edit-user", "categories", "new-categories", "edit-categories"]; 
         if (in_array($view, $white_list)) {  
             if (is_file("./view/" . $view . ".php")) {  
                 $content = "./view/" . $view . ".php";  

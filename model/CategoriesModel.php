@@ -30,8 +30,6 @@ class CategoriesModel  // Clase que maneja las operaciones relacionadas con las 
         $sql = $this->conexion->query($consulta); 
         return $sql->num_rows; 
     }
-
-
     
         // Obtener todas las categorías
     public function getCategories() {
@@ -44,7 +42,31 @@ class CategoriesModel  // Clase que maneja las operaciones relacionadas con las 
         return $data;
     }
     
-    
+
+
+
+
+        // Obtener una categoría por su ID
+    public function getCategory($id) {
+        $consulta = "SELECT * FROM categoria WHERE id = $id LIMIT 1";
+        $sql = $this->conexion->query($consulta);
+        return $sql->fetch_assoc();
+    }
+
+    // Actualizar una categoría
+    public function actualizar($id, $nombre, $detalle) {
+        $consulta = "UPDATE categoria SET nombre = '$nombre', detalle = '$detalle' WHERE id = $id";
+        $sql = $this->conexion->query($consulta);
+        return $sql ? true : false;
+    }
+
+    // Eliminar una categoría
+    public function eliminar($id) {
+        $consulta = "DELETE FROM categoria WHERE id = $id";
+        $sql = $this->conexion->query($consulta);
+        return $sql ? true : false;
+    }
+
     
 }
 

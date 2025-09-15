@@ -1,4 +1,3 @@
-
 <!-- Cuerpo de la pagina-->
     <div class="conteiner-fluid">
         <div class="card">
