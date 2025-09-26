@@ -72,7 +72,7 @@
                     </div>
                     <button type="submit" class="btn btn-success">Registrar</button>
                     <button type="reset" class="btn btn-info">Limpiar</button>
-                    <button type="button" class="btn btn-danger">Cancelar</button>
+                    <a href="<?= BASE_URL ?>users" class="btn btn-danger">Cancelar</a>
                 </div>
             </form>
         </div>
