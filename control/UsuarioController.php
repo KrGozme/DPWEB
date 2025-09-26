@@ -1,13 +1,12 @@
 <?php
+require_once("../model/UsuarioModel.php");
 
-require_once("../model/UsuarioModel.php");  // Importa el modelo de usuario para poder usar sus métodos
-$objPersona = new UsuarioModel();  // Crea una instancia de la clase UsuarioModel para poder acceder a sus métodos
+$objPersona = new UsuarioModel();
 
-$tipo = $_GET['tipo'];  // Obtiene el tipo de operación a realizar desde la URL
+$tipo = $_GET['tipo'];
 
-if ($tipo == "registrar") {  // Si el tipo es "registrar", se procede a registrar un nuevo usuario
-    // Validamos que los campos no esten vacios
-    //    print_r($_POST);
+if ($tipo == "registrar") {
+    //print_r($_POST);
     $nro_identidad = $_POST['nro_identidad'];
     $razon_social = $_POST['razon_social'];
     $telefono = $_POST['telefono'];
@@ -18,81 +17,74 @@ if ($tipo == "registrar") {  // Si el tipo es "registrar", se procede a registra
     $cod_postal = $_POST['cod_postal'];
     $direccion = $_POST['direccion'];
     $rol = $_POST['rol'];
-    // encriptando nro_identidad para utilizarlo como contraseña 
+    // ENCRIPTANDO nro_identidad PARA UTILIZARLO COMO CONTRASEÑA
     $password = password_hash($nro_identidad, PASSWORD_DEFAULT);
-    // Validamos que los campos no esten vacios
+
     if ($nro_identidad == "" || $razon_social == "" || $telefono == "" || $correo == "" || $departamento == "" || $provincia == "" || $distrito == "" || $cod_postal == "" || $direccion == "" || $rol == "") {
-        $arrResponse = array('status' => false, 'msg' => 'Error, campos vacios');  // Si alguno de los campos está vacío, se devuelve un mensaje de error
+        $arrResponse = array('status' => false, 'msg' => 'Error, campos vacios');
     } else {
-        // validacion si existe persona 
-        $existePersona = $objPersona->ExistePersona($nro_identidad);  // Llama al método ExistePersona del modelo para verificar si el usuario ya existe
-        // Si existe persona, no se puede registrar
-        if ($existePersona > 0) {  
-            $arrResponse = array('status' => false, 'msg' => 'Error: nro de documento ya existe');  // Si el usuario ya existe, se devuelve un mensaje de error
-        } else {  // Si el usuario no existe, se procede a registrar
-            // Llama al método registrar del modelo para insertar el nuevo usuario en la base de datos
-            $respuesta = $objPersona->registrar($nro_identidad, $razon_social, $telefono, $correo, $departamento, $provincia, $distrito, $cod_postal, $direccion, $rol, $password);
-
-            if ($respuesta) {  // Si el registro se realiza correctamente, se devuelve un mensaje de éxito
-                $arrResponse = array('status' => true, 'msg' => 'Registrado correctamente');
-            } else {  // Si hay un error al registrar, se devuelve un mensaje de error
-                $arrResponse = array('status' => false, 'msg' => 'Error: fallo en registro');
-            }
-        }
-    }
-
-    echo json_encode($arrResponse);  // Devuelve la respuesta en formato JSON
-}
-if ($tipo == "iniciar_sesion") {  // Si el tipo es "iniciar_sesion", se procede a iniciar sesión
-    $nro_identidad = $_POST['username'];  // Obtiene el número de identidad del usuario desde el formulario
-    $password = $_POST['password'];  // Obtiene la contraseña del usuario desde el formulario
-    // Validamos que los campos no esten vacios
-    if ($nro_identidad == "" || $password == "") {  
-        $respuesta = array('status' => false, 'msg' => 'Error, campos vacios');  // Si alguno de los campos está vacío, se devuelve un mensaje de error
-    } else {
-        $existePersona = $objPersona->ExistePersona($nro_identidad);   // Llama al método ExistePersona del modelo para verificar si el usuario ya existe
-        // Si no existe persona, no se puede iniciar sesión
-        if (!$existePersona) {  
-            $respuesta = array('status' => false, 'msg' => 'Error, usuario no resgistrado');  // Si el usuario no existe, se devuelve un mensaje de error
+        //validacion si existe persona con el mismo dni
+        $existePersona = $objPersona->existePersona($nro_identidad);
+        if ($existePersona > 0) {
+            $arrResponse = array('status' => false, 'msg' => 'Error, nro de documento ya existe');
         } else {
-            $persona = $objPersona->buscarPersonaPorNroIdentidad($nro_identidad);   // Llama al método buscarPersonaPorNroIdentidad del modelo para obtener los datos del usuario
-            if (password_verify($password, $persona->password)) {  // Verifica si la contraseña ingresada coincide con la almacenada en la base de datos
-                session_start();  
-                $_SESSION['ventas_id'] = $persona->id;  
-                $_SESSION['ventas_usuario'] = $persona->razon_social;  
-                $respuesta = array('status' => true, 'msg' => 'OK');  
-            }else {
-                $respuesta = array('status' => false, 'msg' => 'Error, contraseña incorrecta');  
+            $respuesta = $objPersona->registrar($nro_identidad, $razon_social, $telefono, $correo, $departamento, $provincia, $distrito, $cod_postal, $direccion, $rol, $password);
+            if ($respuesta) {
+                $arrResponse = array('status' => true, 'msg' => 'Registrado Correctamente');
+            } else {
+                $arrResponse = array('status' => false, 'msg' => 'Error, falló en registro');
             }
         }
     }
-    echo json_encode($respuesta);  
+    echo json_encode($arrResponse);
+}
+if ($tipo == "iniciar_sesion") {
+    $nro_identidad = $_POST['username'];
+    $password = $_POST['password'];
+    if ($nro_identidad == "" || $password == "") {
+        $respuesta = array('status' => false, 'msg' => 'Error, campos vacios');
+    } else {
+        $existePersona = $objPersona->existePersona($nro_identidad);
+        if (!$existePersona) {
+            $respuesta = array('status' => false, 'msg' => 'Error, usuario no registrado');
+        } else {
+            $persona = $objPersona->buscarPersonaPorNroIdentidad($nro_identidad);
+            if (password_verify($password, $persona->password)) {
+                session_start();
+                $_SESSION['ventas_id'] = $persona->id;
+                $_SESSION['ventas_usuario'] = $persona->razon_social;
+                $respuesta = array('status' => true, 'msg' => 'ok');
+            } else {
+                $respuesta = array('status' => false, 'msg' => 'Error, contraseña incorrecta');
+            }
+        }
+    }
+    echo json_encode($respuesta);
 }
 
-
-if ($tipo == "ver_usuarios"){
+if ($tipo == "ver_usuarios") {
+    $respuesta = array('status' => false, 'msg' => 'fallo el controlador');
     $usuarios = $objPersona->verUsuarios();
-    echo json_encode($usuarios);  
+    if (count($usuarios)) {
+        $respuesta = array('status' => true, 'msg' => '', 'data' => $usuarios);
+    }
+    echo json_encode($respuesta);
 }
-
 if ($tipo == "ver") {
     //print_r($_POST);
-    $respuesta = array('status' => false, 'msg' => 'Error');
+    $respuesta = array('status' => false, 'msg' => '');
     $id_persona = $_POST['id_persona'];
     $usuario = $objPersona->ver($id_persona);
     if ($usuario) {
-     $respuesta ['status'] = true;
-     $respuesta['data'] = $usuario;
-  }else {
-    $respuesta['msg'] = 'error, usuario no existe';
-  }
-  echo json_encode($respuesta);
+        $respuesta['status'] = true;
+        $respuesta['data'] = $usuario;
+    } else {
+        $respuesta['msg'] = 'Error, usuario no existe';
+    }
+    echo json_encode($respuesta);
 }
-
-
-//actualizar usuario
 if ($tipo == "actualizar") {
-   // print_r($_POST);
+    //print_r($_POST);
     $id_persona = $_POST['id_persona'];
     $nro_identidad = $_POST['nro_identidad'];
     $razon_social = $_POST['razon_social'];
@@ -106,21 +98,21 @@ if ($tipo == "actualizar") {
     $rol = $_POST['rol'];
     if ($id_persona == "" || $nro_identidad == "" || $razon_social == "" || $telefono == "" || $correo == "" || $departamento == "" || $provincia == "" || $distrito == "" || $cod_postal == "" || $direccion == "" || $rol == "") {
         $arrResponse = array('status' => false, 'msg' => 'Error, campos vacios');
-    }else {
+    } else {
         $existeID = $objPersona->ver($id_persona);
         if (!$existeID) {
-            // debolver mensaje
-            $arrResponse = array('status' => false, 'msg' => 'Error: usuario no existe en Base de Datos');
+            //devolver mensaje
+            $arrResponse = array('status' => false, 'msg' => 'Error, usuario no existe en BD');
             echo json_encode($arrResponse);
-            // cerrar  funcion
+            // cerrar funcion
             exit;
-        }else {
+        } else {
             // actualizar
             $actualizar = $objPersona->actualizar($id_persona, $nro_identidad, $razon_social, $telefono, $correo, $departamento, $provincia, $distrito, $cod_postal, $direccion, $rol);
             if ($actualizar) {
-                $arrResponse = array('status' => true, 'msg' => 'Actualizado correctamente');
+                $arrResponse = array('status' => true, 'msg'=>"Actualizado correctamente");
             }else {
-                $arrResponse = array('status' => false, 'msg' => $actualizar);
+                $arrResponse = array('status' => false, 'msg'=>$actualizar);
             }
             echo json_encode($arrResponse);
             exit;
@@ -128,28 +120,15 @@ if ($tipo == "actualizar") {
     }
 }
 
-
-// eliminar usuario
 if ($tipo == "eliminar") {
+    //print_r($_POST);
     $id_persona = $_POST['id_persona'];
-
-    if ($id_persona == "" || $id_persona <= 0) {
-        $arrResponse = array('status' => false, 'msg' => 'Error: ID inválido');
-    } else {
-        $existeID = $objPersona->ver($id_persona);
-        if (!$existeID) {
-            $arrResponse = array('status' => false, 'msg' => 'Error: usuario no existe en Base de Datos');
-            echo json_encode($arrResponse);
-            exit;
-        } else {
-            $eliminar = $objPersona->eliminar($id_persona);
-            if ($eliminar) {
-                $arrResponse = array('status' => true, 'msg' => 'Usuario eliminado correctamente');
-            } else {
-                $arrResponse = array('status' => false, 'msg' => 'No se pudo eliminar');
-            }
-            echo json_encode($arrResponse);
-            exit;
-        }
+    $respuesta = array('status' => false, 'msg' => '');
+    $resultado = $objPersona->eliminar($id_persona);
+    if ($resultado) {
+        $respuesta = array('status' => true, 'msg' => 'Eliminado Correctamente');
+    }else {
+        $respuesta = array('status' => false, 'msg' => $resultado);
     }
+    echo json_encode($respuesta);
 }

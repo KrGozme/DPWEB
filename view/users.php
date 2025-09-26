@@ -1,17 +1,14 @@
 <div class="container">
-    <div class="p-2 pt-1 pb-1" style="justify-content: space-between; display: flex; background-color: #ffcb3cff; border:solid 5px #000;">
-        <h1 style="font-weight:900; font-family: Arial;">Lista de usuarios</h1>
-        <button style="font-weight:700" type="button" class="btn btn-success">
-            <a class="nav-link" href="<?php echo BASE_URL; ?>new-user">Nuevo Usuario</a>
-        </button>
-    </div>
+    <h4 class="mt-3 mb-3">Lista de Usuarios</h4>
+    <a href="<?= BASE_URL ?>new-user" class="btn btn-primary">Nuevo +</a>
+    <br><br>
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
                 <th>Nro</th>
                 <th>DNI</th>
                 <th>Nombres y Apellidos</th>
-                <th>correo</th>
+                <th>Correo</th>
                 <th>Rol</th>
                 <th>Estado</th>
                 <th>Acciones</th>
@@ -22,5 +19,4 @@
         </tbody>
     </table>
 </div>
-<script src="<?php echo BASE_URL; ?>view/function/user.js"></script>
-<!--<script>view_users();</script>-->
+<script src="<?= BASE_URL ?>view/function/user.js"></script>
