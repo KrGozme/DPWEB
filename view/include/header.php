@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AYUCRA</title>
+    <title>Kilder</title>
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>view/bootstrap/css/bootstrap.min.css">
     <script>
         const base_url = '<?php echo BASE_URL; ?>';
@@ -17,8 +17,8 @@
     ?>
 </head>
 
-<body>
-    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+<body style="background-color: #ddeaffff;">
+    <nav class="navbar navbar-expand-lg" data-bs-theme="dark" style="background-color: #0288d6ff; font-weight: bold; font-size: 1.1rem;">
         <div class="container-fluid">
             <a class="navbar-brand" href="#" style="font-size: 1.7rem;">⭐</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

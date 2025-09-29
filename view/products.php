@@ -1,7 +1,8 @@
 <div class="container">
-    <h4 class="mt-3 mb-3">Lista de Productos</h4>
-    <a href="<?= BASE_URL ?>new-product" class="btn btn-primary">Nuevo +</a>
-    <br><br>
+    <div style="display: flex; justify-content: space-between; padding: 0.5rem 1rem; background-color: #ff7d49ff; align-items: center; border-radius: 0.5rem; border: 0.4rem solid black;">
+    <h4 style="font-size: 2.5rem; font-weight: bold;">Lista de Productos</h4>
+    <a href="<?= BASE_URL ?>new-product" class="btn btn-success">Nuevo +</a>
+    </div>
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
