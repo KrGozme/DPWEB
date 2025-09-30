@@ -68,6 +68,7 @@
 
 <div class="login-box">
   <div class="login-header">
+<img src="<?= BASE_URL; ?>view/img/hola.png" alt="Logo" class="logo d-block mx-auto">
     <span>INICIAR SESION</span>
   </div>
   
