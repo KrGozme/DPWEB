@@ -17,8 +17,8 @@
     ?>
 </head>
 
-<body style="background-color: #ddeaffff;">
-    <nav class="navbar navbar-expand-lg" data-bs-theme="dark" style="background-color: #0288d6ff; font-weight: bold; font-size: 1.1rem;">
+<body style="background-color: #ddeaffff; margin-top: 4.2rem">
+    <nav class="navbar navbar-expand-lg" data-bs-theme="dark" style="background-color: #0288d6ff; font-weight: bold; font-size: 1.1rem; position: fixed; top: 0; width: 100%; z-index:1000">
         <div class="container-fluid">
             <a class="navbar-brand" href="#" style="font-size: 1.7rem;">⭐</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

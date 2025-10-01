@@ -1,12 +1,12 @@
 <div class="container">
-    <div style="display: flex; justify-content: space-between; padding: 0.5rem 1rem; background-color: #ffce49ff; align-items: center; border-radius: 0.5rem; border: 0.4rem solid black;">
+    <div style="display: flex; justify-content: space-between; padding: 0.5rem 1rem; background-color: #ffce49ff; align-items: center; border-radius: 0.5rem; border: 0.4rem solid black;  position: sticky; top: 4.2rem;">
         <h4 style="font-size: 2.5rem; font-weight: bold;">Lista de Categorias</h4>
         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalCategoria">
             Nuevo +
         </button>
     </div>
-    <table class="table table-bordered table-striped">
-        <thead>
+    <table class="table table-bordered table-striped" style="text-align:center;">
+        <thead style="position: sticky; top: 9.4rem; font-size: 1.5rem; z-index: 10;">
             <tr>
                 <th>Nro</th>
                 <th>Nombre</th>

@@ -3,8 +3,8 @@
     <h4 style="font-size: 2.5rem; font-weight: bold;">Lista de Productos</h4>
     <a href="<?= BASE_URL ?>new-product" class="btn btn-success">Nuevo +</a>
     </div>
-    <table class="table table-bordered table-striped">
-        <thead>
+    <table class="table table-bordered table-striped" style="text-align:center;">
+        <thead style="position: sticky; top: 9.4rem; font-size: 1.5rem; z-index: 10;">
             <tr>
                 <th>Nro</th>
                 <th>Código</th>
