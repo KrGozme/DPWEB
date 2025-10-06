@@ -31,6 +31,8 @@ class UsuarioModel
         $sql = $this->conexion->query($consulta);
         return $sql->fetch_object();
     }
+
+    // Obtener lista de usuarios
     public function verUsuarios()
     {
         $arr_usuarios = array();
