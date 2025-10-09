@@ -36,7 +36,7 @@ class UsuarioModel
     public function verUsuarios()
     {
         $arr_usuarios = array();
-        $consulta = "SELECT * FROM persona";
+        $consulta = "SELECT * FROM persona WHERE NOT rol IN ('cliente','proveedor')";
         $sql = $this->conexion->query($consulta);
         while ($objeto = $sql->fetch_object()) {
             array_push($arr_usuarios, $objeto);
@@ -62,19 +62,27 @@ class UsuarioModel
         return $sql;
     }
 
-
+    // Obtener lista de clientes
+    public function verClientes()
+    {
+        $arr_usuarios = array();
+        $consulta = "SELECT * FROM persona WHERE rol = 'cliente'";
+        $sql = $this->conexion->query($consulta);
+        while ($objeto = $sql->fetch_object()) {
+            array_push($arr_usuarios, $objeto);
+        }
+        return $arr_usuarios;
+    }
 
     // Obtener lista de proveedores
     public function verProveedores()
     {
-        $arr_proveedores = array();
-        $consulta = "SELECT razon_social 
-                 FROM persona 
-                 WHERE rol='proveedor'";
+        $arr_proveedor = array();
+        $consulta = "SELECT * FROM persona where rol = 'proveedor'";
         $sql = $this->conexion->query($consulta);
         while ($objeto = $sql->fetch_object()) {
-            array_push($arr_proveedores, $objeto);
+            array_push($arr_proveedor, $objeto);
         }
-        return $arr_proveedores;
+        return $arr_proveedor;
     }
 }

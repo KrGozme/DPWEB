@@ -39,10 +39,13 @@
                         <a class="nav-link" href="<?= BASE_URL ?>category">Categories</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= BASE_URL ?>new-cliente">Clients</a>
+                        <a class="nav-link" href="<?= BASE_URL ?>clients">Clients</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Shops</a>
+                        <a class="nav-link" href="<?= BASE_URL ?>proveedor">proveedores</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= BASE_URL ?>">Shops</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Sales</a>

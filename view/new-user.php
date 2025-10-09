@@ -66,7 +66,7 @@
                             <select class="form-control" name="rol" id="rol" required>
                                 <option value="" disabled selected>Seleccione</option>
                                 <option value="Administrador">Administrador</option>
-                                <option value="Proveedor">Proveedor</option>
+                                <option value="Trabajador">Trabajador</option>
                                 <option value="Vendedor">Vendedor</option>
                                 <option value="Gerente">Gerente</option>
                             </select>
