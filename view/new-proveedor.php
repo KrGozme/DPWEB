@@ -3,7 +3,7 @@
         <div class="card">
             <h5 class="card-header">Registro de Proveedores</h5>
             
-            <form id="frm_cliente" action="" method="">
+            <form id="frm_proveedor" action="" method="">
                 <div class="card-body">
                     <div class="mb-3 row">
                         <label for="nro_identidad" class="col-sm-4 col-form-label">Nro de Documento :</label>
@@ -73,4 +73,4 @@
         </div>
     </div>
 <!-- FIN DE CUERPO DE PÁGINA -->
- <script src="<?php echo BASE_URL; ?>view/function/user.js"></script>
+ <script src="<?php echo BASE_URL; ?>view/function/proveedor.js"></script>

@@ -1,9 +1,9 @@
 <!-- INICIO DE CUERPO DE PÁGINA -->
 <div class="container-fluid">
     <div class="card">
-        <h5 class="card-header">Editar Datos de Usuario</h5>
-        
-        <form id="frm_edit_user" action="" method="">
+        <h5 class="card-header">Editar Datos del Proveedor</h5>
+
+        <form id="frm_edit_proveedor" action="" method="">
             <input type="hidden" id="id_persona" name="id_persona" value="<?= $ruta[1]; ?>">
             <div class="card-body">
                 <div class="mb-3 row">
@@ -63,21 +63,17 @@
                 <div class="mb-3 row">
                     <label for="rol" class="col-sm-4 col-form-label">Rol :</label>
                     <div class="col-sm-8">
-                        <select class="form-control" name="rol" id="rol" required>
-                            <option value="" disabled selected>Seleccione</option>
-                            <option value="Administrador">Administrador</option>
-                            <option value="Vendedor">Vendedor</option>
-                        </select>
+                        <input type="text" value="proveedor" class="form-control" id="rol" name="rol" readonly>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-success">Actualizar</button>
-                <a href="<?= BASE_URL ?>users" class="btn btn-danger">Cancelar</a>
+                <a href="<?= BASE_URL ?>proveedor" class="btn btn-danger">Cancelar</a>
             </div>
         </form>
     </div>
 </div>
 <!-- FIN DE CUERPO DE PÁGINA -->
-<script src="<?php echo BASE_URL; ?>view/function/user.js"></script>
+<script src="<?php echo BASE_URL; ?>view/function/proveedor.js"></script>
 <script>
-    edit_user();
+    edit_proveedor();
 </script>

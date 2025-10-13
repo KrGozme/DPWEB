@@ -38,6 +38,8 @@ if ($tipo == "registrar") {
     }
     echo json_encode($arrResponse);
 }
+
+// iniciar sesion
 if ($tipo == "iniciar_sesion") {
     $nro_identidad = $_POST['username'];
     $password = $_POST['password'];
