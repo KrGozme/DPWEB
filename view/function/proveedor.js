@@ -34,6 +34,8 @@ if (document.querySelector('#frm_proveedor')) {
         validar_form("nuevo");
     }
 }
+
+// registrar proveedor
 async function registrarProveedor() {
     try {
         //capturar campos de formulario (HTML)
@@ -105,7 +107,7 @@ if (document.getElementById('content_proveedor')) {
 }
 
 
-// editar cliente
+// editar proveedor
 async function edit_proveedor() {
     try {
         let id_persona = document.getElementById('id_persona').value;

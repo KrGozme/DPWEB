@@ -34,6 +34,9 @@ if (document.querySelector('#frm_user')) {
         validar_form("nuevo");
     }
 }
+
+
+// registrar usuario
 async function registrarUsuario() {
     try {
         //capturar campos de formulario (HTML)
@@ -59,6 +62,7 @@ async function registrarUsuario() {
 }
 
 
+// iniciar sesion
 async function iniciar_sesion() {
     let usuario = document.getElementById("username").value;
     let password = document.getElementById("password").value;
@@ -88,6 +92,8 @@ async function iniciar_sesion() {
     }
 }
 
+
+// ver usuarios
 async function view_users() {
     try {
         let respuesta = await fetch(base_url + 'control/UsuarioController.php?tipo=ver_usuarios', {
@@ -132,6 +138,8 @@ if (document.getElementById('content_users')) {
     view_users();
 }
 
+
+// editar usuario
 async function edit_user() {
     try {
         let id_persona = document.getElementById('id_persona').value;
@@ -190,6 +198,8 @@ async function actualizarUsuario() {
         alert(json.msg);
     }
 }
+
+// eliminar usuario
 async function fn_eliminar(id) {
     if (window.confirm("Confirmar eliminar?")) {
         eliminar(id);

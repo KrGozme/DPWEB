@@ -34,6 +34,8 @@ if (document.querySelector('#frm_cliente')) {
         validar_form("nuevo");
     }
 }
+
+// registrar cliente
 async function registrarCliente() {
     try {
         //capturar campos de formulario (HTML)
@@ -57,6 +59,7 @@ async function registrarCliente() {
         console.log("Error al registrar Cliente:" + e);
     }
 }
+
 
 // ver clientes
 async function view_clientes() {

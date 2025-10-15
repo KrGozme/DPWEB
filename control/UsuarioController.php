@@ -64,6 +64,8 @@ if ($tipo == "iniciar_sesion") {
     echo json_encode($respuesta);
 }
 
+
+// ver usuarios
 if ($tipo == "ver_usuarios") {
     $respuesta = array('status' => false, 'msg' => 'fallo el controlador');
     $usuarios = $objPersona->verUsuarios();
