@@ -9,10 +9,12 @@
                 <th>Nro</th>
                 <th>Código</th>
                 <th>Nombre</th>
+                <th>Detalle</th>
                 <th>Precio</th>
                 <th>Stock</th>
                 <th>Categoria</th>
                 <th>F.V.</th>
+                <th>Proveedor</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -21,4 +23,4 @@
         </tbody>
     </table>
 </div>
-<script src="<?= BASE_URL ?>view/function/product.js"></script>
+<script src="<?= BASE_URL ?>view/function/products.js"></script>
