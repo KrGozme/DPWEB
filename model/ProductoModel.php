@@ -56,7 +56,18 @@ class ProductoModel
     }
     // editar producto
     public function actualizar($id_producto, $codigo, $nombre, $detalle, $precio, $stock, $id_categoria, $fecha_vencimiento, $imagen, $id_proveedor)
-    {
+    {   // Escapar datos para evitar errores o inyecciones simples
+        $codigo = $this->conexion->real_escape_string($codigo);
+        $nombre = $this->conexion->real_escape_string($nombre);
+        $detalle = $this->conexion->real_escape_string($detalle);
+        $fecha_vencimiento = $this->conexion->real_escape_string($fecha_vencimiento);
+        $id_proveedor = (int)$id_proveedor;
+        $id_categoria = (int)$id_categoria;
+        $precio = (float)$precio;
+        $stock = (int)$stock;
+        $id_producto = (int)$id_producto;
+
+        // Armar consulta según si hay imagen nueva o no
         if (!empty($imagen)) {
             $consulta = "UPDATE producto 
                      SET codigo='$codigo', nombre='$nombre', detalle='$detalle', 
