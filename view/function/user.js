@@ -82,7 +82,7 @@ async function iniciar_sesion() {
         let json = await respuesta.json();
         // validamos que json.status sea = True
         if (json.status) { //true
-            location.replace(base_url + 'new-user');
+            location.replace(base_url + 'home');
         } else {
             alert(json.msg);
         }
