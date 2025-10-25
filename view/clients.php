@@ -1,24 +1,31 @@
-<div class="container">
-    <div style="display: flex; justify-content: space-between; padding: 0.5rem 1rem; background-color: #b700ffff; align-items: center; border-radius: 0.5rem; border: 0.4rem solid black;">
-    <h4 style="font-size: 2.5rem; font-weight: bold;">Lista de Clientes</h4>
-    <a href="<?= BASE_URL ?>new-cliente" class="btn btn-success">Nuevo +</a>
-    </div>
-
-    <table class="table table-bordered table-striped" style="text-align:center;">
-        <thead style="position: sticky; top: 9.4rem; font-size: 1.5rem; z-index: 10;">
-            <tr>
-                <th>Nro</th>
-                <th>DNI</th>
-                <th>Nombres y Apellidos</th>
-                <th>Correo</th>
-                <th>Rol</th>
-                <th>Estado</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody id="content_clientes">
-
-        </tbody>
-    </table>
-</div>
-<script src="<?= BASE_URL ?>view/function/clients.js"></script>
+<main class="main">
+    <!-- Cabecera de la vista -->
+    <header class="main-header">
+        <h1 class="main-title">Gestión de Clientes</h1>
+        <div class="main-actions">
+            <a href="<?= BASE_URL ?>new-cliente" class="btn btn-success">+ Nuevo</a>
+        </div>
+    </header>
+    <!-- Contenido principal -->
+    <section class="main-content">
+        <div class="table-wrapper">
+            <table class="table table-bordered table-hover align-middle text-center">
+                <thead>
+                    <tr>
+                        <th>Nro</th>
+                        <th>DNI</th>
+                        <th>Nombres y Apellidos</th>
+                        <th>Correo</th>
+                        <th>Rol</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="content_clientes">
+                    <!-- Contenido dinámico -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <script src="<?= BASE_URL ?>view/function/clients.js"></script>
+</main>

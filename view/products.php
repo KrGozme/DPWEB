@@ -1,26 +1,33 @@
-<div class="container">
-    <div style="display: flex; justify-content: space-between; padding: 0.5rem 1rem; background-color: #ff7d49ff; align-items: center; border-radius: 0.5rem; border: 0.4rem solid black;">
-    <h4 style="font-size: 2.5rem; font-weight: bold;">Lista de Productos</h4>
-    <a href="<?= BASE_URL ?>new-product" class="btn btn-success">Nuevo +</a>
-    </div>
-    <table class="table table-bordered table-striped" style="text-align:center;">
-        <thead style="position: sticky; top: 9.4rem; font-size: 1.5rem; z-index: 10;">
-            <tr>
-                <th>Nro</th>
-                <th>Código</th>
-                <th>Nombre</th>
-                <th>Detalle</th>
-                <th>Precio</th>
-                <th>Stock</th>
-                <th>Categoria</th>
-                <th>F.V.</th>
-                <th>Proveedor</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody id="content_products">
-
-        </tbody>
-    </table>
-</div>
-<script src="<?= BASE_URL ?>view/function/products.js"></script>
+<main class="main">
+    <!-- Cabecera de la vista -->
+    <header class="main-header">
+        <h1 class="main-title">Gestión de Productos</h1>
+        <div class="main-actions">
+            <a href="<?= BASE_URL ?>new-product" class="btn btn-success">+ Nuevo</a>
+        </div>
+    </header>
+    <!-- Contenido principal -->
+    <section class="main-content">
+        <div class="table-wrapper">
+            <table class="table table-bordered table-hover align-middle text-center">
+                <thead>
+                    <tr>
+                        <th>Nro</th>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Detalle</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                        <th>Categoria</th>
+                        <th>F.V.</th>
+                        <th>Proveedor</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="content_products">
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <script src="<?= BASE_URL ?>view/function/products.js"></script>
+</main>
