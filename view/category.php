@@ -3,7 +3,7 @@
     <header class="main-header">
         <h1 class="main-title">Gestión de Categorias</h1>
         <div class="main-actions">
-            <a href="<?= BASE_URL ?>new-product" class="btn btn-success">+ Nuevo</a>
+            <a href="<?= BASE_URL ?>new-category" class="btn btn-success">+ Nuevo</a>
         </div>
     </header>
     <!-- Contenido principal -->

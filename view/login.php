@@ -2,47 +2,49 @@
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Iniciar Sesión</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="<?= BASE_URL; ?>view/css/login.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Tienda Virtual</title>
+  <link rel="stylesheet" href="<?= BASE_URL; ?>view/css/login.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script>
     const base_url = '<?= BASE_URL; ?>';
   </script>
 </head>
 
 <body>
-  <div class="container" id="container">
-    <!-- Formulario de Inicio de Sesión -->
-    <div class="form-container sign-in-container">
-      <form id="frm_login">
-        <h1>Iniciar Sesión</h1>
-        <div class="social-container">
-          <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-          <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-        </div>
-        <p>Usa tu cuenta</p>
-        <input type="text" class="form-control" id="username" name="username" placeholder="Ingrese su usuario" required>
-        <input type="password" class="form-control" id="password" name="password" placeholder="Ingrese su contraseña" required>
-        <a href="mailto:soporte@ejemplo.com">¿Olvidaste tu contraseña?</a>
-        <button type="button" onclick="iniciar_sesion();">Ingresar</button>
-      </form>
+  <div class="login-container">
+    <!-- Formulario -->
+    <div class="login-form">
+      <div class="form-card">
+        <h2>Iniciar Sesión</h2>
+        <form id="frm_login">
+          <div class="input-group">
+            <i class="fa fa-user icon"></i>
+            <input type="text" class="form-control" id="username" name="username" required>
+            <label>Usuario</label>
+            <span class="bar"></span>
+          </div>
+          <div class="input-group">
+            <i class="fa fa-lock icon"></i>
+            <input type="password" class="form-control" id="password" name="password" required>
+            <label>Contraseña</label>
+            <span class="bar"></span>
+          </div>
+          <button type="button" class="btn" onclick="iniciar_sesion();">Ingresar</button>
+          <p class="forgot"><a href="#">¿Olvidaste tu contraseña?</a></p>
+        </form>
+      </div>
+    <!-- Imagen lateral -->
     </div>
-
-    <!-- Panel de animación -->
-    <div class="overlay-container">
-      <div class="overlay">
-        <div class="overlay-panel overlay-right">
-          <h1>¡Hola!</h1>
-          <p>Introduce tus datos personales y comienza tu viaje con nosotros</p>
-        </div>
+    <div class="login-image">
+      <img src="<?= BASE_URL; ?>view/img/login_img.jpg" alt="Tienda Virtual">
+      <div class="overlay-text">
       </div>
     </div>
-
-    <script src="<?= BASE_URL; ?>view/function/user.js"></script>
-    
+  </div>
+  <script src="<?= BASE_URL; ?>view/function/user.js"></script>
 </body>
 
 </html>
