@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background: #f3f4f6;
+    background: #111827;
     height: 100vh;
     display: flex;
     /* sidebar + main al costado */
@@ -25,7 +25,7 @@ body {
     box-sizing: border-box;
     flex-shrink: 0;
     overflow-y: auto;
-    overflow-x: hidden; 
+    overflow-x: hidden;
 
 }
 
@@ -63,13 +63,88 @@ body {
     flex-direction: column;
     height: 100vh;
     background: #f3f4f6;
-    padding: 24px 32px;
+    padding: 0;
     box-sizing: border-box;
     overflow-y: auto;
-    overflow-x: hidden; 
+    overflow-x: hidden;
 }
 
+/* ---------- HEADER ---------- */
+.header {
+    height: 3.5em;
+    background: #111827;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px 10px 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    color: #ffffff;
+}
+
+.header h1 {
+    font-size: 18px;
+    color: #ffffff;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-info img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* ---------- BUSCADOR ---------- */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1); /* más visible sobre fondo oscuro */
+    backdrop-filter: blur(8px);
+    border-radius: 10px;
+    padding: 2px 12px;
+    width: 50rem;
+    height: 2rem; 
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.search-bar input {
+    border: none;
+    outline: none;
+    flex: 1;
+    font-size: 14px;
+    padding: 5px;
+    color: #f9fafb; /* texto claro */
+    background: transparent;
+}
+
+.search-bar input::placeholder {
+    color: #d1d5db; /* gris suave */
+}
+
+.search-bar i {
+    color: #9ca3af; /* icono gris */
+    font-size: 18px;
+    margin-right: 6px;
+}
+
+.search-bar:focus-within {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.2);
+}
+
+
 /* ---------- cabecera del main ---------- */
+.home-main {
+    padding: 24px 32px;
+}
+
 .main-header {
     display: flex;
     align-items: center;
@@ -116,7 +191,7 @@ body {
 
 .table-wrapper {
     max-height: 70vh;
-    overflow-y: auto; 
+    overflow-y: auto;
     overflow-x: auto;
     border-radius: 8px;
     border: 1px solid #ddd;

@@ -33,3 +33,15 @@
         <a href="<?= BASE_URL ?>#">🛍️ Shops</a>
         <a href="<?= BASE_URL ?>#">💰 Sales</a>
     </nav>
+    <main class="main">
+        <!-- HEADER -->
+        <header class="header">
+            <div class="search-bar">
+                <input type="text" placeholder="Buscar..." />
+                <i class="bi bi-search"></i>
+            </div>
+            <div class="user-info">
+                <span>Admin</span>
+                <img src="https://i.pravatar.cc/40" alt="User">
+            </div>
+        </header>

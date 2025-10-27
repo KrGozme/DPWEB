@@ -1,4 +1,4 @@
-<main class="main">
+<main class="home-main">
     <!-- Cabecera de la vista -->
     <header class="main-header">
         <h1 class="main-title">Gestión de Clientes</h1>
@@ -28,4 +28,5 @@
         </div>
     </section>
     <script src="<?= BASE_URL ?>view/function/clients.js"></script>
+</main>
 </main>
