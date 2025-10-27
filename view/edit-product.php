@@ -2,7 +2,6 @@
 <div class="container-fluid">
     <div class="card">
         <h5 class="card-header">Editar Datos de Producto</h5>
-
         <form id="frm_edit_producto" action="" method="" enctype="multipart/form-data">
             <input type="hidden" id="id_producto" name="id_producto" value="<?= $ruta[1]; ?>">
             <div class="card-body">
@@ -16,7 +15,7 @@
                     <label for="nombre" class="col-sm-4 col-form-label">nombre :</label>
                     <div class="col-sm-8">
                         <input type="text" class="form-control" id="nombre" name="nombre" required>
-                    </div>  
+                    </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="detalle" class="col-sm-4 col-form-label">Detalle :</label>

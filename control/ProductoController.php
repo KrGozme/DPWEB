@@ -9,7 +9,7 @@ $objUsuario = new UsuarioModel();
 
 $tipo = $_GET['tipo'];
 
-// Registrar nuevo producto
+// Registrar Producto
 if ($tipo == "registrar") {
     $codigo = $_POST['codigo'];
     $nombre = $_POST['nombre'];
@@ -19,7 +19,6 @@ if ($tipo == "registrar") {
     $id_categoria = $_POST['id_categoria'];
     $fecha_vencimiento = $_POST['fecha_vencimiento'];
     $id_proveedor = $_POST['id_proveedor'];
-
     if ($codigo === "" || $nombre === "" || $detalle === "" || $precio === "" || $stock === "" || $id_categoria === "" || $fecha_vencimiento === "" || $id_proveedor === "") {
         echo json_encode(['status' => false, 'msg' => 'Error, campos vacíos']);
         exit;
@@ -73,10 +72,7 @@ if ($tipo == "registrar") {
     exit;
 }
 
-
-
-
-// ver productos
+// Ver Productos
 if ($tipo == "ver_productos") {
     $respuesta = array('status' => false, 'msg' => 'fallo el controlador');
     $productos = $objProducto->verProductos();
@@ -86,6 +82,7 @@ if ($tipo == "ver_productos") {
     echo json_encode($respuesta);
 }
 
+// Editar Producto
 if ($tipo == "ver") {
     $respuesta = array('status' => false, 'msg' => '');
     $id_producto = $_POST['id_producto'];
@@ -99,16 +96,7 @@ if ($tipo == "ver") {
     echo json_encode($respuesta);
 }
 
-
-
-
-
-
-
-
-
-
-
+// Actualizar Producto
 if ($tipo == "actualizar") {
     $id_producto = $_POST['id_producto'];
     $codigo = $_POST['codigo'];
@@ -185,17 +173,8 @@ if ($tipo == "actualizar") {
     }
 }
 
-
-
-
-
-
-
-
-
-//eliminar producto
+// Eliminar Producto
 if ($tipo == "eliminar") {
-    //print_r($_POST);
     $id_producto = $_POST['id_producto'];
     $respuesta = array('status' => false, 'msg' => '');
     $resultado = $objProducto->eliminar($id_producto);

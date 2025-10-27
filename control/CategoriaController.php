@@ -5,24 +5,13 @@ $objCategoria = new CategoriaModel();
 
 $tipo = $_GET['tipo'];
 
-if ($tipo == "ver_categorias") {
-    $respuesta = array('status' => false, 'msg' => 'fallo el controlador');
-    $categorias = $objCategoria->verCategorias();
-    if (count($categorias)) {
-        $respuesta = array('status' => true, 'msg' => '', 'data' => $categorias);
-    }
-    echo json_encode($respuesta);
-}
-
+// Registrar Categoria
 if ($tipo == "registrar") {
-    //print_r($_POST);
     $nombre = $_POST['nombre'];
     $detalle = $_POST['detalle'];
-
     if ($nombre == "" || $nombre == "") {
         $arrResponse = array('status' => false, 'msg' => 'Error, campos vacios');
     } else {
-        //validacion si existe persona con el mismo dni
         $existeCategoria = $objCategoria->existeCategoria($nombre);
         if ($existeCategoria > 0) {
             $arrResponse = array('status' => false, 'msg' => 'Error, categoria ya existe');
@@ -37,8 +26,19 @@ if ($tipo == "registrar") {
     }
     echo json_encode($arrResponse);
 }
+
+// Ver Categoria
+if ($tipo == "ver_categorias") {
+    $respuesta = array('status' => false, 'msg' => 'fallo el controlador');
+    $categorias = $objCategoria->verCategorias();
+    if (count($categorias)) {
+        $respuesta = array('status' => true, 'msg' => '', 'data' => $categorias);
+    }
+    echo json_encode($respuesta);
+}
+
+// Editar Categoria
 if ($tipo == "ver") {
-    //print_r($_POST);
     $respuesta = array('status' => false, 'msg' => '');
     $id_categoria = $_POST['id_categoria'];
     $categoria = $objCategoria->ver($id_categoria);
@@ -50,8 +50,9 @@ if ($tipo == "ver") {
     }
     echo json_encode($respuesta);
 }
+
+// Actualizar Categoria
 if ($tipo == "actualizar") {
-    //print_r($_POST);
     $id_cat = $_POST['id_categoria'];
     $nombre = $_POST['nombre'];
     $detalle = $_POST['detalle'];
@@ -60,32 +61,30 @@ if ($tipo == "actualizar") {
     } else {
         $existeID = $objCategoria->ver($id_cat);
         if (!$existeID) {
-            //devolver mensaje
             $arrResponse = array('status' => false, 'msg' => 'Error, categoria no existe en BD');
             echo json_encode($arrResponse);
-            // cerrar funcion
             exit;
         } else {
-            // actualizar
             $actualizar = $objCategoria->actualizar($id_cat, $nombre, $detalle);
             if ($actualizar) {
-                $arrResponse = array('status' => true, 'msg'=>"Actualizado correctamente");
-            }else {
-                $arrResponse = array('status' => false, 'msg'=>$actualizar);
+                $arrResponse = array('status' => true, 'msg' => "Actualizado correctamente");
+            } else {
+                $arrResponse = array('status' => false, 'msg' => $actualizar);
             }
             echo json_encode($arrResponse);
             exit;
         }
     }
 }
+
+// Eliminar Categoria
 if ($tipo == "eliminar") {
-    //print_r($_POST);
     $id_categoria = $_POST['id_categoria'];
     $respuesta = array('status' => false, 'msg' => '');
     $resultado = $objCategoria->eliminar($id_categoria);
     if ($resultado) {
         $respuesta = array('status' => true, 'msg' => 'Eliminado Correctamente');
-    }else {
+    } else {
         $respuesta = array('status' => false, 'msg' => $resultado);
     }
     echo json_encode($respuesta);

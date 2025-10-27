@@ -1,17 +1,13 @@
 <?php
 require_once("../library/conexion.php");
-class CategoriaModel
-{
+class CategoriaModel {
     private $conexion;
-    function __construct()
-    {
+    function __construct() {
         $this->conexion = new Conexion();
         $this->conexion = $this->conexion->connect();
     }
-    
-    // obtener todas las categorias
-    public function verCategorias()
-    {
+
+    public function verCategorias() {
         $arr_categorias = array();
         $consulta = "SELECT * FROM categoria";
         $sql = $this->conexion->query($consulta);
@@ -20,14 +16,14 @@ class CategoriaModel
         }
         return $arr_categorias;
     }
-    public function existeCategoria($nombre)
-    {
+
+    public function existeCategoria($nombre) {
         $consulta = "SELECT * FROM categoria WHERE nombre='$nombre'";
         $sql = $this->conexion->query($consulta);
         return $sql->num_rows;
     }
-    public function registrar($nombre, $detalle)
-    {
+
+    public function registrar($nombre, $detalle) {
         $consulta = "INSERT INTO categoria (nombre,detalle) VALUES ('$nombre', '$detalle')";
         $sql = $this->conexion->query($consulta);
         if ($sql) {
@@ -37,8 +33,8 @@ class CategoriaModel
         }
         return $sql;
     }
-    public function ver($id)
-    {
+
+    public function ver($id) {
         $consulta = "SELECT * FROM categoria WHERE id='$id'";
         $sql = $this->conexion->query($consulta);
         return $sql->fetch_object();
@@ -49,10 +45,10 @@ class CategoriaModel
         $sql = $this->conexion->query($consulta);
         return $sql;
     }
-     public function eliminar($id){
+
+    public function eliminar($id) {
         $consulta = "DELETE FROM categoria WHERE id='$id'";
         $sql = $this->conexion->query($consulta);
         return $sql;
     }
-    
 }

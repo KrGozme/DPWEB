@@ -36,7 +36,7 @@
           <p class="forgot"><a href="#">¿Olvidaste tu contraseña?</a></p>
         </form>
       </div>
-    <!-- Imagen lateral -->
+      <!-- Imagen lateral -->
     </div>
     <div class="login-image">
       <img src="<?= BASE_URL; ?>view/img/login_img.jpg" alt="Tienda Virtual">

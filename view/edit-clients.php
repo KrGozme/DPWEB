@@ -2,7 +2,6 @@
 <div class="container-fluid">
     <div class="card">
         <h5 class="card-header">Editar Datos del Cliente</h5>
-
         <form id="frm_edit_cliente" action="" method="">
             <input type="hidden" id="id_persona" name="id_persona" value="<?= $ruta[1]; ?>">
             <div class="card-body">

@@ -23,11 +23,9 @@ function validar_form(tipo) {
     if (tipo == "actualizar") {
         actualizarProveedor();
     }
-
 }
 
 if (document.querySelector('#frm_proveedor')) {
-    // evita que se envie el formulario
     let frm_proveedor = document.querySelector('#frm_proveedor');
     frm_proveedor.onsubmit = function (e) {
         e.preventDefault();
@@ -35,12 +33,10 @@ if (document.querySelector('#frm_proveedor')) {
     }
 }
 
-// registrar proveedor
+// Registrar Proveedor
 async function registrarProveedor() {
     try {
-        //capturar campos de formulario (HTML)
         const datos = new FormData(frm_proveedor);
-        //enviar datos a controlador
         let respuesta = await fetch(base_url + 'control/UsuarioController.php?tipo=registrar', {
             method: 'POST',
             mode: 'cors',
@@ -48,8 +44,7 @@ async function registrarProveedor() {
             body: datos
         });
         let json = await respuesta.json();
-        // validamos que json.status sea = True
-        if (json.status) { //true
+        if (json.status) {
             alert(json.msg);
             document.getElementById('frm_proveedor').reset();
         } else {
@@ -60,8 +55,7 @@ async function registrarProveedor() {
     }
 }
 
-
-// ver proveedores
+// Ver Proveedores
 async function view_proveedor() {
     try {
         let respuesta = await fetch(base_url + 'control/UsuarioController.php?tipo=ver_proveedores', {
@@ -82,18 +76,16 @@ async function view_proveedor() {
                 let nueva_fila = document.createElement("tr");
                 nueva_fila.id = "fila" + usuario.id;
                 nueva_fila.className = "filas_tabla";
-                nueva_fila.innerHTML = `
-                            <td>${cont}</td>
-                            <td>${usuario.nro_identidad}</td>
-                            <td>${usuario.razon_social}</td>
-                            <td>${usuario.correo}</td>
-                            <td>${usuario.rol}</td>
-                            <td>${estado}</td>
-                            <td>
-                                <a class="btn btn-primary" href="`+ base_url + `edit-proveedor/` + usuario.id + `">Editar</a>
-                                <button class="btn btn-danger" onclick="fn_eliminar(` + usuario.id + `);">Eliminar</button>
-                            </td>
-                `;
+                nueva_fila.innerHTML = `<td>${cont}</td>
+                                        <td>${usuario.nro_identidad}</td>
+                                        <td>${usuario.razon_social}</td>
+                                        <td>${usuario.correo}</td>
+                                        <td>${usuario.rol}</td>
+                                        <td>${estado}</td>
+                                        <td>
+                                          <a class="btn btn-primary" href="`+ base_url + `edit-proveedor/` + usuario.id + `">Editar</a>
+                                          <button class="btn btn-danger" onclick="fn_eliminar(` + usuario.id + `);">Eliminar</button>
+                                        </td>`;
                 cont++;
                 contenidot.appendChild(nueva_fila);
             });
@@ -106,14 +98,12 @@ if (document.getElementById('content_proveedor')) {
     view_proveedor();
 }
 
-
-// editar proveedor
+// Editar Proveedor
 async function edit_proveedor() {
     try {
         let id_persona = document.getElementById('id_persona').value;
         const datos = new FormData();
         datos.append('id_persona', id_persona);
-
         let respuesta = await fetch(base_url + 'control/UsuarioController.php?tipo=ver', {
             method: 'POST',
             mode: 'cors',
@@ -135,13 +125,11 @@ async function edit_proveedor() {
         document.getElementById('cod_postal').value = json.data.cod_postal;
         document.getElementById('direccion').value = json.data.direccion;
         document.getElementById('rol').value = json.data.rol;
-
     } catch (error) {
         console.log('oops, ocurrió un error ' + error);
     }
 }
 if (document.querySelector('#frm_edit_proveedor')) {
-    // evita que se envie el formulario
     let frm_user = document.querySelector('#frm_edit_proveedor');
     frm_user.onsubmit = function (e) {
         e.preventDefault();
@@ -149,6 +137,7 @@ if (document.querySelector('#frm_edit_proveedor')) {
     }
 }
 
+// Actualizar Proveedor
 async function actualizarProveedor() {
     const datos = new FormData(frm_edit_proveedor);
     let respuesta = await fetch(base_url + 'control/UsuarioController.php?tipo=actualizar', {
@@ -162,20 +151,17 @@ async function actualizarProveedor() {
         alert("Oooooops, ocurrio un error al actualizar, intentelo nuevamente");
         console.log(json.msg);
         return;
-    }else{
+    } else {
         alert(json.msg);
     }
 }
 
-
-
-// eliminar proveedor
+// Eliminar Proveedor
 async function fn_eliminar(id) {
     if (window.confirm("Confirmar eliminar?")) {
         eliminar(id);
     }
 }
-
 async function eliminar(id) {
     let datos = new FormData();
     datos.append('id_persona', id);
@@ -190,7 +176,7 @@ async function eliminar(id) {
         alert("Oooooops, ocurrio un error al eliminar persona, intentelo mas tarde");
         console.log(json.msg);
         return;
-    }else{
+    } else {
         alert(json.msg);
         location.replace(base_url + 'proveedor');
     }

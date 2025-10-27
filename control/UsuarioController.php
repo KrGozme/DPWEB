@@ -5,8 +5,8 @@ $objPersona = new UsuarioModel();
 
 $tipo = $_GET['tipo'];
 
+// Registrar Usuario
 if ($tipo == "registrar") {
-    //print_r($_POST);
     $nro_identidad = $_POST['nro_identidad'];
     $razon_social = $_POST['razon_social'];
     $telefono = $_POST['telefono'];
@@ -19,7 +19,6 @@ if ($tipo == "registrar") {
     $rol = $_POST['rol'];
     // ENCRIPTANDO nro_identidad PARA UTILIZARLO COMO CONTRASEÑA
     $password = password_hash($nro_identidad, PASSWORD_DEFAULT);
-
     if ($nro_identidad == "" || $razon_social == "" || $telefono == "" || $correo == "" || $departamento == "" || $provincia == "" || $distrito == "" || $cod_postal == "" || $direccion == "" || $rol == "") {
         $arrResponse = array('status' => false, 'msg' => 'Error, campos vacios');
     } else {
@@ -39,7 +38,7 @@ if ($tipo == "registrar") {
     echo json_encode($arrResponse);
 }
 
-// iniciar sesion
+// Iniciar Sesion
 if ($tipo == "iniciar_sesion") {
     $nro_identidad = $_POST['username'];
     $password = $_POST['password'];
@@ -64,8 +63,7 @@ if ($tipo == "iniciar_sesion") {
     echo json_encode($respuesta);
 }
 
-
-// ver usuarios
+// Ver Usuarios
 if ($tipo == "ver_usuarios") {
     $respuesta = array('status' => false, 'msg' => 'fallo el controlador');
     $usuarios = $objPersona->verUsuarios();
@@ -74,8 +72,9 @@ if ($tipo == "ver_usuarios") {
     }
     echo json_encode($respuesta);
 }
+
+// Editar Usuario
 if ($tipo == "ver") {
-    //print_r($_POST);
     $respuesta = array('status' => false, 'msg' => '');
     $id_persona = $_POST['id_persona'];
     $usuario = $objPersona->ver($id_persona);
@@ -87,8 +86,9 @@ if ($tipo == "ver") {
     }
     echo json_encode($respuesta);
 }
+
+// Actualizar Usuario
 if ($tipo == "actualizar") {
-    //print_r($_POST);
     $id_persona = $_POST['id_persona'];
     $nro_identidad = $_POST['nro_identidad'];
     $razon_social = $_POST['razon_social'];
@@ -105,13 +105,10 @@ if ($tipo == "actualizar") {
     } else {
         $existeID = $objPersona->ver($id_persona);
         if (!$existeID) {
-            //devolver mensaje
             $arrResponse = array('status' => false, 'msg' => 'Error, usuario no existe en BD');
             echo json_encode($arrResponse);
-            // cerrar funcion
             exit;
         } else {
-            // actualizar
             $actualizar = $objPersona->actualizar($id_persona, $nro_identidad, $razon_social, $telefono, $correo, $departamento, $provincia, $distrito, $cod_postal, $direccion, $rol);
             if ($actualizar) {
                 $arrResponse = array('status' => true, 'msg'=>"Actualizado correctamente");
@@ -124,8 +121,8 @@ if ($tipo == "actualizar") {
     }
 }
 
+// Eliminar Esuario
 if ($tipo == "eliminar") {
-    //print_r($_POST);
     $id_persona = $_POST['id_persona'];
     $respuesta = array('status' => false, 'msg' => '');
     $resultado = $objPersona->eliminar($id_persona);
@@ -137,9 +134,7 @@ if ($tipo == "eliminar") {
     echo json_encode($respuesta);
 }
 
-
-
-//ver clientes
+// Ver Clientes
 if ($tipo == "ver_clientes") {
     $respuesta = array('status' => false, 'msg' => 'fallo el controlador');
     $usuarios = $objPersona->verClientes();
@@ -149,8 +144,7 @@ if ($tipo == "ver_clientes") {
     echo json_encode($respuesta);
 }
 
-
-//ver proveedores
+// Ver Proveedores
 if ($tipo == "ver_proveedores") {
     $respuesta = array('status' => false, 'msg' => 'fallo el controlador');
     $usuarios = $objPersona->verProveedores();

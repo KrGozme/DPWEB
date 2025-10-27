@@ -25,6 +25,7 @@
                     </tr>
                 </thead>
                 <tbody id="content_products">
+                    <!-- Contenido dinámico -->
                 </tbody>
             </table>
         </div>
