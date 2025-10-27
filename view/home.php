@@ -1,4 +1,4 @@
-<main class="home-main">
+<main class="main home-main">
     <!-- Cabecera -->
     <div class="home-header">
         <h1>Panel de Control</h1>
@@ -110,4 +110,4 @@
         document.getElementById('fecha').textContent = new Date().toLocaleDateString();
     </script>
 </main>
-</main>
+</div>

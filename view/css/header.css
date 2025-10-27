@@ -6,16 +6,24 @@ body {
     background: #ffffff;
     height: 100vh;
     display: flex;
-    /* sidebar + main al costado */
+    flex-direction: column;
+    /* ← en columnas */
     overflow: hidden;
-    /* sin scroll global */
     box-sizing: border-box;
 }
+
+.content-wrapper {
+    display: flex;
+    flex: 1;
+    height: calc(100vh - 3.5em);
+    /* resta la altura del header */
+    overflow: hidden;
+}
+
 
 /* ---------- sidebar ---------- */
 .sidebar {
     width: 220px;
-    height: 100vh;
     background: #111827;
     color: #fff;
     display: flex;
@@ -25,9 +33,41 @@ body {
     box-sizing: border-box;
     flex-shrink: 0;
     overflow-y: auto;
-    overflow-x: hidden;
-
 }
+
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #f3f4f6;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+/* ---------- Mostrar/Ocultar sidebar siempre ---------- */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 3.5em;
+    height: calc(100vh - 3.5em);
+    transition: left 0.3s ease;
+    z-index: 100;
+}
+
+.sidebar.hidden {
+    left: -230px;
+}
+
+.content-wrapper {
+    margin-left: 220px;
+    transition: margin-left 0.3s ease;
+}
+
+.content-wrapper.full {
+    margin-left: 0;
+}
+
 
 .sidebar h2 {
     margin: 0 0 8px 0;
@@ -56,18 +96,12 @@ body {
     color: #fff;
 }
 
-/* ---------- estructura base del main ---------- */
-.main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    background: #f3f4f6;
-    padding: 0;
-    box-sizing: border-box;
-    overflow-y: hidden;
-    overflow-x: hidden;
+.sidebar.hidden {
+    left: -230px;
+    /* Oculta el sidebar */
+    transition: left 0.3s ease;
 }
+
 
 /* ---------- HEADER ---------- */
 .header {
@@ -76,13 +110,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 20px 10px 10px;
+    padding: 10px 20px 10px 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     color: #ffffff;
 }
 
 .header h1 {
-    font-size: 18px;
+    font-size: 1.5rem;
     color: #ffffff;
 }
 
@@ -150,13 +184,14 @@ body {
     flex: 1;
     display: flex;
     flex-direction: column;
-    height: 100vh;
     background: #f3f4f6;
     box-sizing: border-box;
-    padding: 24px 32px;
+    padding: 24px 32px 24px 32px;
+    /* ← padding-bottom mayor para separar del final */
     overflow-y: auto;
     overflow-x: hidden;
 }
+
 
 .main-header {
     display: flex;
@@ -242,4 +277,26 @@ body {
     .table-wrapper {
         max-height: none;
     }
+}
+
+/* ---------- HAMBURGUESA ---------- */
+.menu-toggle {
+    display: block;
+    /* siempre visible */
+    font-size: 1.6rem;
+    color: #fff;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 200;
+    /* arriba de todo */
+    position: relative;
+}
+
+
+/* Alinea título y botón */
+.left-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }

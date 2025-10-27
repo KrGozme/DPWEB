@@ -1,4 +1,4 @@
-<main class="home-main">
+<main class="main home-main">
     <!-- Cabecera de la vista -->
     <header class="main-header">
         <h1 class="main-title">Gestión de Productos</h1>
@@ -31,5 +31,4 @@
         </div>
     </section>
     <script src="<?= BASE_URL ?>view/function/products.js"></script>
-</main>
 </main>
