@@ -24,6 +24,9 @@ body {
     padding: 18px;
     box-sizing: border-box;
     flex-shrink: 0;
+    overflow-y: auto;
+    overflow-x: hidden; 
+
 }
 
 .sidebar h2 {
@@ -63,6 +66,7 @@ body {
     padding: 24px 32px;
     box-sizing: border-box;
     overflow-y: auto;
+    overflow-x: hidden; 
 }
 
 /* ---------- cabecera del main ---------- */
@@ -112,16 +116,12 @@ body {
 
 .table-wrapper {
     max-height: 70vh;
-    /* altura máxima de la tabla */
-    overflow-y: scroll;
-    /* permitir scroll vertical */
-    -ms-overflow-style: none;
-    /* IE y Edge */
-    scrollbar-width: none;
-    /* Firefox */
+    overflow-y: auto; 
+    overflow-x: auto;
     border-radius: 8px;
     border: 1px solid #ddd;
 }
+
 
 /* Ocultar scroll en Webkit (Chrome, Safari, Opera) */
 .table-wrapper::-webkit-scrollbar {
