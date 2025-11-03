@@ -15,6 +15,12 @@
 
 <body>
   <div class="login-container">
+    <!-- Imagen lateral -->
+    <div class="login-image">
+      <img src="<?= BASE_URL; ?>view/img/login_img.jpg" alt="Tienda Virtual">
+      <div class="overlay-text">
+      </div>
+    </div>
     <!-- Formulario -->
     <div class="login-form">
       <div class="form-card">
@@ -35,12 +41,6 @@
           <button type="button" class="btn" onclick="iniciar_sesion();">Ingresar</button>
           <p class="forgot"><a href="#">¿Olvidaste tu contraseña?</a></p>
         </form>
-      </div>
-      <!-- Imagen lateral -->
-    </div>
-    <div class="login-image">
-      <img src="<?= BASE_URL; ?>view/img/login_img.jpg" alt="Tienda Virtual">
-      <div class="overlay-text">
       </div>
     </div>
   </div>
