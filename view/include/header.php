@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kilder</title>
-    <link rel="stylesheet" href="<?php echo BASE_URL; ?>view/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>view/Bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>view/css/header.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>view/css/home.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
