@@ -52,4 +52,5 @@
             <a href="<?= BASE_URL ?>proveedor">🏭 Proveedores</a>
             <a href="<?= BASE_URL ?>#">🛍️ Shops</a>
             <a href="<?= BASE_URL ?>#">💰 Sales</a>
+            <a href="<?= BASE_URL ?>vista-cliente">💰 Vista Cliente</a>
         </nav>
