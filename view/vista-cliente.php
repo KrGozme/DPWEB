@@ -13,7 +13,6 @@
     <?php
     if (isset($_GET["views"])) {
         $ruta = explode("/", $_GET["views"]);
-        //echo $ruta[1];
     }
     ?>
 </head>
@@ -80,7 +79,6 @@
                 <button class="btn">Explorar</button>
             </div>
         </div>
-
         <button id="prevSlide" class="carousel-control prev">❮</button>
         <button id="nextSlide" class="carousel-control next">❯</button>
     </section>
@@ -92,8 +90,6 @@
         <button>Deportes</button>
         <button>Hogar</button>
     </section>
-
-
 
     <!-- Productos -->
     <div class="container">
@@ -129,58 +125,51 @@
     <p class="copy">© 2025 Mi Tienda. Todos los derechos reservados.</p>
   </footer>
 
-    <script>
-        // MENU RESPONSIVO
-        document.getElementById('menu-toggle').addEventListener('click', () => {
-            document.querySelector('.nav').classList.toggle('active');
-        });
-
-        // CARRUSEL
-        const slides = document.querySelectorAll('.carousel-slide');
-        let currentSlide = 0;
-
-        function showSlide(index) {
-            slides.forEach(s => s.classList.remove('active'));
-            slides[index].classList.add('active');
+<script>
+    // MENU RESPONSIVO
+    document.getElementById('menu-toggle').addEventListener('click', () => {
+        document.querySelector('.nav').classList.toggle('active');
+    });
+    // CARRUSEL
+    const slides = document.querySelectorAll('.carousel-slide');
+    let currentSlide = 0;
+    function showSlide(index) {
+        slides.forEach(s => s.classList.remove('active'));
+        slides[index].classList.add('active');
+    }
+    document.getElementById('nextSlide').onclick = () => {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    };
+    document.getElementById('prevSlide').onclick = () => {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+    };
+    setInterval(() => {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }, 5000);
+    // CARRITO
+    document.addEventListener('click', e => {
+        if (e.target.classList.contains('btn-cart')) {
+            cartCount++;
+            const count = document.getElementById('cart-count');
+            count.textContent = cartCount;
+            count.classList.remove('hidden');
         }
-
-        document.getElementById('nextSlide').onclick = () => {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
-        };
-
-        document.getElementById('prevSlide').onclick = () => {
-            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-            showSlide(currentSlide);
-        };
-
-        setInterval(() => {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
-        }, 5000);
-
-        // CARRITO
-        document.addEventListener('click', e => {
-            if (e.target.classList.contains('btn-cart')) {
-                cartCount++;
-                const count = document.getElementById('cart-count');
-                count.textContent = cartCount;
-                count.classList.remove('hidden');
-            }
-        });
-    </script>
-    <script>
-        // ==== MENÚ MÓVIL ====
-        const menuToggle = document.getElementById('menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        menuToggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('show');
-        });
-    </script>
-    <script src="<?php echo BASE_URL; ?>view/function/vistaC.js"></script>
-    <script src="<?php echo BASE_URL; ?>view/Bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    });
+</script>
+<script>
+    // ==== MENÚ MÓVIL ====
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('show');
+    });
+</script>
+<script src="<?php echo BASE_URL; ?>view/function/products.js"></script>
+<script src="<?php echo BASE_URL; ?>view/Bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

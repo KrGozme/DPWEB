@@ -185,19 +185,3 @@ if ($tipo == "eliminar") {
     }
     echo json_encode($respuesta);
 }
-
-
-
-// ============================================================
-// NUEVA FUNCIÓN PARA LISTAR PRODUCTOS EN LA VISTA DEL CLIENTE
-// ============================================================
-if (isset($_GET['tipo']) && $_GET['tipo'] == 'listarCliente') {
-    $productos = $objProducto->obtenerProductosCliente();
-    
-    if (count($productos) > 0) {
-        echo json_encode(['status' => true, 'data' => $productos]);
-    } else {
-        echo json_encode(['status' => false, 'msg' => 'No hay productos disponibles']);
-    }
-    exit;
-}
