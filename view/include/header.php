@@ -53,4 +53,5 @@
             <a href="<?= BASE_URL ?>#">🛍️ Shops</a>
             <a href="<?= BASE_URL ?>#">💰 Sales</a>
             <a href="<?= BASE_URL ?>vista-cliente">💰 Vista Cliente</a>
+            <a href="<?= BASE_URL ?>vendedor">📦 vendedor</a>
         </nav>
