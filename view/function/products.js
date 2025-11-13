@@ -108,6 +108,7 @@ async function view_products() {
                                         <td>${producto.stock}</td>
                                         <td>${producto.categoria}</td>
                                         <td>${producto.fecha_vencimiento}</td>
+                                        <td><svg id="barcode${producto.id}"></svg></td>
                                         <td>${producto.proveedor}</td>
                                         <td>
                                           <a class="btn btn-primary" href="`+ base_url + `edit-product/` + producto.id + `">Editar</a>
@@ -115,6 +116,13 @@ async function view_products() {
                                         </td>`;
                 cont++;
                 contenidot.appendChild(nueva_fila);
+                JsBarcode("#barcode" + producto.id, "" + producto.codigo, {
+                  format: "code128",
+                  lineColor: "rgba(0, 0, 0, 1)",
+                  width: 1,
+                  height: 30,
+                  displayValue: false
+                });
             });
         }
     } catch (error) {
