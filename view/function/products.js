@@ -215,7 +215,7 @@ async function eliminar(id) {
     }
 }
 
-// Ver Productos vista Cñiente
+// Ver Productos vista Cliente
 async function viewProductosClients() {
   try {
     let respuesta = await fetch(base_url + 'control/ProductoController.php?tipo=ver_productos', {
@@ -229,6 +229,50 @@ async function viewProductosClients() {
     container.innerHTML = ''; // Limpia antes de insertar
     if (json.status) {
       json.data.forEach(prod => {
+        let card = document.createElement("div");
+        card.classList.add("col-12", "col-md-6", "col-lg-3", "mb-4");
+        card.innerHTML=`<div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden">
+                            <img src="${base_url}${prod.imagen}" class="card-img-top img-fluid" alt="${prod.nombre}" style="height:200px; object-fit:cover;">
+                            <div class="card-body d-flex flex-column">
+                              <h5 class="card-title fw-bold">${prod.nombre}</h5>
+                              <p class="card-text text-truncate" style="height:40px;">${prod.detalle}</p>
+                              <p class="text-primary fw-bold fs-5">S/ ${prod.precio}</p>
+                              <div class="d-flex justify-content-between">
+                                <a href="#" class="btn btn-outline-primary btn-sm px-3 custom-btn"><i class="bi bi-eye me-1"></i>Detalle</a>
+                                <a href="#" class="btn btn-primary btn-sm px-3 custom-btn"><i class="bi bi-cart-plus me-1"></i>Agregar</a>
+                              </div>
+                            </div>
+                        </div>`;
+        container.appendChild(card);
+      });
+    }
+  } catch (error) {
+    console.log('Error al cargar productos: ' + error);
+  }
+}
+
+if (document.getElementById('productos-container')) {
+    viewProductosClients();
+}
+
+// Ver Productos vista Vendedor
+async function viewProductosVendedor() {
+  try {
+    let dato = document.getElementById('busqueda_venta').value;
+    const datos = new FormData();
+    datos.append('dato', dato);
+    let respuesta = await fetch(base_url + 'control/ProductoController.php?tipo=buscar_producto_venta', {
+      method: 'POST',
+      mode: 'cors',
+      cache: 'no-cache',
+      body: datos
+    });
+
+    let json = await respuesta.json();
+    let container = document.getElementById('productos-container');
+    container.innerHTML = ''; // Limpia antes de insertar
+    if (json.status) {
+        json.data.forEach(prod => {
         let card = document.createElement("div");
         card.classList.add("col-12", "col-md-6", "col-lg-3", "mb-4");
         card.innerHTML=`<div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden">

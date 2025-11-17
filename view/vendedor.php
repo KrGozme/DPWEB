@@ -1,17 +1,15 @@
 <div class="container-fluid mt-4 row">
-    <h2>Ventas</h2>
-    <div class="col-8 overflow-auto" style="max-height: 85vh;">
+    <div class="col-8">
         <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Busqueda de Productos</h5>
-                <div class="row container-fluid" id="productos-container">
-                    <!--<div class="card m-2 col-3">
-                        <div class="card-body">
-                            <img src="https://www.agenciaeplus.com.br/wp-content/uploads/2021/12/pagina-de-produto.jpg" alt="" width="100%" height="150px">
-                            <p class="card-text">Descripcion del producto</p>
-                            <button class="btn btn-primary">Agregar</button>
-                        </div>
-                    </div>-->
+            <div class="card-body ">
+                <div class="search-box d-flex mb-3">
+                    <h5 class="card-title">Busqueda de Productos</h5>
+                    <input type="text" id="busqueda_venta" class="form-control" placeholder="Buscar..." onkeyup="viewProductosVendedor();">
+                </div>
+                <div class="overflow-auto" style="height: 75vmin;">
+                    <div class="row container-fluid" id="productos-container">
+                        <!-- Productos se cargan aquí dinámicamente -->
+                    </div>
                 </div>
             </div>
         </div>
