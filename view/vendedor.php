@@ -2,9 +2,12 @@
     <div class="col-8">
         <div class="card">
             <div class="card-body ">
+                <h5 class="card-title text-center">Busqueda de Productos</h5>
                 <div class="search-box d-flex mb-3">
-                    <h5 class="card-title">Busqueda de Productos</h5>
-                    <input type="text" id="busqueda_venta" class="form-control" placeholder="Buscar..." onkeyup="viewProductosVendedor();">
+                    <input type="text" class="form-control col-md-12" placeholder="buscar producto por codigo o nombre" id="busqueda_venta" onkeyup="viewProductosVendedor();">
+                    <input type="hidden" id="id_producto_venta">
+                    <input type="hidden" id="producto_precio_venta">
+                    <input type="hidden" id="producto_cantidad_venta" value="1">
                 </div>
                 <div class="overflow-auto" style="height: 75vmin;">
                     <div class="row container-fluid" id="productos-container">
@@ -56,3 +59,11 @@
 </div>
 <script src="<?= BASE_URL ?>view/function/products.js"></script>
 <script src="<?= BASE_URL ?>view/function/venta.js"></script>
+<script>
+    let input = document.getElementById("busqueda_venta");
+    input.addEventListener('keydown', (event)=>{
+        if (event.key == 'Enter') {
+            agregar_producto_temporal();
+        }
+    })
+</script>

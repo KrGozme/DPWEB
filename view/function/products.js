@@ -288,8 +288,15 @@ async function viewProductosVendedor() {
                             </div>
                         </div>`;
         container.appendChild(card);
+        let id = document.getElementById('id_producto_venta');
+        let precio = document.getElementById('producto_precio_venta');
+        let cantidad = document.getElementById('producto_cantidad_venta');
+        id.value = prod.id;
+        precio.value = prod.precio;
+        cantidad.value = 1;
       });
     }
+    
   } catch (error) {
     console.log('Error al cargar productos: ' + error);
   }
