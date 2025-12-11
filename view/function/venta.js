@@ -33,12 +33,14 @@ async function agregar_producto_temporal() {
         });
         json = await respuesta.json();
         if (json.status) {
-            if (json.msg == "registrado") {
+            /*if (json.msg == "registrado") {
                 alert("el producto fue registrado");
             } else {
                 alert("el producto fue actualizado");
-            }
+            }*/
+           listar_temporales();
         }
+        
 
     } catch (error) {
         console.log("error en agregar producto temporal " + error);
