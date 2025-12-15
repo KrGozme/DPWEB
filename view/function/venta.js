@@ -73,7 +73,7 @@ async function listar_temporales() {
                                     <td><input type="number" id="cant_${t_venta.id}" value="${t_venta.cantidad}" style="width: 60px;" onkeyup="actualizar_subtotal(${t_venta.id}, ${t_venta.precio});" onchange="actualizar_subtotal(${t_venta.id}, ${t_venta.precio});"></td>
                                     <td>S/. ${t_venta.precio}</td>
                                     <td id="subtotal_${t_venta.id}">S/. ${t_venta.cantidad * t_venta.precio}</td>
-                                    <td><button class="btn btn-danger btn-sm">Eliminar</button></td>
+                                    <td><button class="btn btn-danger btn-sm" onclick="eliminar_temporal(${t_venta.id})">Eliminar</button></td>
                                 </tr>`
             });
             document.getElementById('lista_compra').innerHTML = lista_temporal;
@@ -127,5 +127,60 @@ async function act_subt_general() {
         }
     } catch (error) {
         console.log("error al cargar productos temporales " + error);
+    }
+}
+
+
+//
+async function eliminar_temporal(id) {}
+
+async function buscar_cliente_venta() {
+    let dni = document.getElementById('cliente_dni').value;
+    try {
+        const datos = new FormData();
+        datos.append('dni', dni);
+        let respuesta = await fetch(base_url + 'control/UsuarioController.php?tipo=buscar_por_dni', {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            body: datos
+        });
+        json = await respuesta.json();
+        if (json.status) {
+            document.getElementById('cliente_nombre').value = json.data.razon_social;
+            document.getElementById('id_cliente_venta').value = json.data.id;
+        }else{
+            alert(json.msg);
+        }
+    } catch (error) {
+        console.log("error al buscar cliente por dni " + error);
+    }
+}
+
+async function registrar_venta() {
+    let id_cliente = document.getElementById('id_cliente_venta').value;
+    let fecha_venta = document.getElementById('fecha_venta').value;
+    if (id_cliente == '' || fecha_venta =='') {
+        return alert("Debe completar todos los campos");
+    }
+    try {
+        const datos = new FormData();
+        datos.append('id_cliente', id_cliente);
+        datos.append('fecha_venta', fecha_venta);
+        let respuesta = await fetch(base_url + 'control/VentaController.php?tipo=registrar_venta', {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            body: datos
+        });
+        json = await respuesta.json();
+        if (json.status) {
+            alert("Venta registrada con exito");
+            window.location.reload();
+        } else {
+            alert(json.msg);
+        }
+    } catch (error) {
+        console.log("error al registrar venta " + error);
     }
 }

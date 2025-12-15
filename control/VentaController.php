@@ -54,3 +54,35 @@ if($tipo=="actualizar_cantidad"){
     }
     echo json_encode($respuesta);
 }
+
+
+//
+if ($tipo == "registrar_venta"){
+    session_start();
+    $id_cliente = $_POST['id_cliente'];
+    $fecha_venta = $_POST['fecha_venta'];
+    $id_vendedor = $_SESSION['ventas_id'];
+    $ultima_venta = $objVenta->buscar_ultima_venta();
+    // logica para registrar la venta
+    $respuesta = array('status' => false, 'msg' => 'fallo el controlador');
+    if ($ultima_venta) {
+        $correlativo = $ultima_venta->codigo + 1;
+    } else {
+        $correlativo = 1;
+    } 
+    // registrar la venta oficial
+    $venta = $objVenta->registrar_venta($correlativo, $fecha_venta, $id_cliente, $id_vendedor);
+    if ($venta) {
+        // registrar los detalles de la venta
+        $temporales = $objVenta->buscarTemporales();
+        foreach ($temporales as $temporal) {
+            $objVenta->registrar_detalle_venta($venta, $temporal->id_producto, $temporal->precio, $temporal->cantidad);
+        }
+        // eliminar los temporales
+        $objVenta->eliminarTemporales();
+        $respuesta = array('status' => true, 'msg' => 'venta registrada con exito');
+    } else {
+        $respuesta = array('status' => false, 'msg' => 'error al registrar la venta');
+    }
+    echo json_encode($respuesta);
+}
