@@ -4,13 +4,13 @@
             <div class="card-body ">
                 <h5 class="card-title text-center">Busqueda de Productos</h5>
                 <div class="search-box d-flex mb-3">
-                    <input type="text" class="form-control col-md-12" placeholder="buscar producto por codigo o nombre" id="busqueda_venta" onkeyup="viewProductosVendedor();">
+                    <input type="text" class="form-control col-md-12" placeholder="buscar producto por codigo o nombre" id="busqueda_venta" onkeyup="listar_productos_venta();">
                     <input type="hidden" id="id_producto_venta">
                     <input type="hidden" id="producto_precio_venta">
                     <input type="hidden" id="producto_cantidad_venta" value="1">
                 </div>
                 <div class="overflow-auto" style="height: 75vmin;">
-                    <div class="row container-fluid" id="productos-container">
+                    <div class="row container-fluid" id="productos_venta">
                         <!-- Productos se cargan aquí dinámicamente -->
                     </div>
                 </div>
@@ -84,7 +84,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-success" onclick="registrar_venta();">Registrar Venta</button>
+                <button type="button" class="btn btn-success" onclick="registrarVenta();">Registrar Venta</button>
             </div>
         </div>
     </div>
