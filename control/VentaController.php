@@ -54,6 +54,12 @@ if ($tipo == "registrar_venta") {
     $id_cliente = $_POST['id_cliente'];
     $fecha_venta = $_POST['fecha_venta'];
     $id_vendedor = $_SESSION['ventas_id'];
+    //Verificar que haya productos temporales
+    $temporales = $objVenta->buscarTemporales();
+    if (!$temporales || count($temporales) == 0) {
+        echo json_encode(['status' => false,'msg' => 'No puede registrar una venta sin productos']);
+        exit;
+    }
     $ultima_venta = $objVenta->buscar_ultima_venta();
     //Lógica para registrar la venta
     $respuesta = array('status' => false, 'msg' => 'fallo el controlador');
@@ -75,6 +81,19 @@ if ($tipo == "registrar_venta") {
         $respuesta = array('status' => true, 'msg' => 'venta registrada con exito');
     } else {
         $respuesta = array('status' => false, 'msg' => 'error al registrar la venta');
+    }
+    echo json_encode($respuesta);
+}
+
+// Eliminar producto temporal
+if ($tipo == "eliminar_temporal") {
+    $id = $_POST['id'];
+    $respuesta = array('status' => false, 'msg' => 'fallo el controlador');
+    $eliminar = $objVenta->eliminarTemporal($id);
+    if ($eliminar) {
+        $respuesta = array('status' => true, 'msg' => 'producto eliminado');
+    } else {
+        $respuesta = array('status' => false, 'msg' => 'error al eliminar');
     }
     echo json_encode($respuesta);
 }
